@@ -31,7 +31,7 @@ namespace BirdJYSP
             this.regularFont = regularFont;
             this.highlightFont = hilightFont;
             this.menuItems = menuItem;
-            pos = new Vector2(Shared.stage.X / 2, Shared.stage.Y / 2);
+            pos = new Vector2(Shared.stage.X / 6, Shared.stage.Y / 3);
         }
 
         public override void Draw(GameTime gameTime)
