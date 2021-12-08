@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using FlappyBirdJYSP;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -27,12 +28,43 @@ namespace BirdJYSP
         {
             // TODO: Add your initialization logic here
             Shared.stage = new Vector2(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
+
+
+
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            Vector2 stage = new Vector2(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
+            //cloud background (2 layers to fix a bug
+            Texture2D texClouds = this.Content.Load<Texture2D>("images/clouds");
+            Rectangle srcRectClouds = new Rectangle(0, 100, texClouds.Width, (int)stage.Y);
+            Vector2 posClouds = new Vector2(1194, stage.Y - srcRectClouds.Height);
+            Vector2 speedClouds = new Vector2(1, 0);
+            ScrollingBackground cloud = new ScrollingBackground(this, _spriteBatch, texClouds, posClouds, srcRectClouds, speedClouds);
+            Vector2 posClouds2 = new Vector2(0, stage.Y - srcRectClouds.Height);
+            Vector2 speedClouds2 = new Vector2(1, 0);
+            ScrollingBackground cloud2 = new ScrollingBackground(this, _spriteBatch, texClouds, posClouds2, srcRectClouds, speedClouds2);
+            this.Components.Add(cloud);
+            this.Components.Add(cloud2);
+
+            //Changing background (should carry over to all screens) for city
+
+            Texture2D tex = this.Content.Load<Texture2D>("images/background");
+            Rectangle srcRect = new Rectangle(0, -300, tex.Width, (int)stage.Y);
+            Vector2 pos = new Vector2(0, stage.Y - srcRect.Height);
+            Vector2 speed = new Vector2(2, 0);
+            ScrollingBackground sb = new ScrollingBackground(this, _spriteBatch, tex, pos, srcRect, speed);
+
+
+            Vector2 pos2 = new Vector2(0, stage.Y - srcRect.Height - 10);
+            Vector2 speed2 = new Vector2(1, 0);
+            ScrollingBackground sb2 = new ScrollingBackground(this, _spriteBatch, tex, pos2, srcRect, speed2);
+            this.Components.Add(sb2);
+            this.Components.Add(sb);
 
             // TODO: use this.Content to load your game content here
             startScene = new StartScene(this);
