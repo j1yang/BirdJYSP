@@ -56,8 +56,8 @@ namespace BirdJYSP
             if (position.X < 0)
             {
                 Random rnd = new Random();
-                position.X = Shared.stage.X;
-                position.Y = rnd.Next(40, 420);
+                position.X = Shared.stage.X + 800;
+                position.Y = rnd.Next(40, 360);
             }
 
             base.Update(gameTime);

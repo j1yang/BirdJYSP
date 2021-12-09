@@ -19,7 +19,7 @@ namespace BirdJYSP
             Game1 g = (Game1)game;
             this.spriteBatch = g._spriteBatch;
 
-            Texture2D birdTex = g.Content.Load<Texture2D>("images/test");
+            Texture2D birdTex = g.Content.Load<Texture2D>("images/enemyBird");
             Texture2D playerBirdTex = g.Content.Load<Texture2D>("images/playerBird");
             Texture2D bulletTex = g.Content.Load<Texture2D>("images/bullet");
 
@@ -30,8 +30,8 @@ namespace BirdJYSP
             
 
             //width of screen is 800
-            Vector2 pipe1pos = new Vector2((Shared.stage.X), (Shared.stage.Y) - rnd.Next(20, 420));
-            Vector2 pipe2pos = new Vector2((Shared.stage.X) + 400, rnd.Next(-400, -100));
+            Vector2 pipe1pos = new Vector2((Shared.stage.X), (Shared.stage.Y) - rnd.Next(20, 360));
+            Vector2 pipe2pos = new Vector2((Shared.stage.X) + 800, rnd.Next(-400, -200));
             Texture2D pipeUpTex = g.Content.Load<Texture2D>("images/PipeUp");
             Texture2D pipeDownTex = g.Content.Load<Texture2D>("images/PipeDown");
             Pipe pipe1 = new Pipe(game, spriteBatch, pipeUpTex, pipe1pos);
@@ -39,11 +39,9 @@ namespace BirdJYSP
             PipeDown pipe2 = new PipeDown(game, spriteBatch, pipeDownTex, pipe2pos);
             this.Components.Add(pipe2);
 
-            Vector2 p1pos = new Vector2((Shared.stage.X), (Shared.stage.Y) - rnd.Next(2, (int)Shared.stage.Y));
-            Vector2 p2pos = new Vector2((Shared.stage.X) + 296, (Shared.stage.Y) - rnd.Next(2, (int)Shared.stage.Y));
-            Vector2 p3pos = new Vector2((Shared.stage.X) + 593, (Shared.stage.Y) - rnd.Next(2, (int)Shared.stage.Y));
-            Enemy enemy1 = new Enemy(game, spriteBatch, birdTex, p1pos);
-            this.Components.Add(enemy1);
+            Vector2 p2pos = new Vector2((Shared.stage.X) + 200, (Shared.stage.Y) - rnd.Next(2, (int)Shared.stage.Y));
+            Vector2 p3pos = new Vector2((Shared.stage.X) + 600, (Shared.stage.Y) - rnd.Next(2, (int)Shared.stage.Y));
+            
 
             Enemy enemy2 = new Enemy(game, spriteBatch, birdTex, p2pos);
             this.Components.Add(enemy2);

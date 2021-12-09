@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -25,6 +26,13 @@ namespace BirdJYSP
         //height is 480
         private Vector2 startLocation = new Vector2((Shared.stage.X), (Shared.stage.Y) - rnd.Next(10, 470));
 
+        //For the animation of enemy Bird
+        private List<Rectangle> frames;
+        private int frameIndex = 0;
+        private int delay = 2;
+        private int delayCounter;
+        private const int COL = 3;
+
         public Enemy(Game game, SpriteBatch spriteBatch, Texture2D tex, Vector2 position) : base(game)
         {
             this.spriteBatch = spriteBatch;
@@ -35,12 +43,28 @@ namespace BirdJYSP
             //set origin of pipe to 0,0 (top left)
             origin = new Vector2(0, 0);
             originalPosition = position;
+            createFrames();
+        }
+        //used to create each frame of the sprite animation
+        private void createFrames()
+        {
+            frames = new List<Rectangle>();
+            int x = 0;
+            int y = 0;
+            for (int i = 0; i < COL; i++)
+            {
+
+                Rectangle r = new Rectangle(x, y, 120, 85);
+                frames.Add(r);
+                x += 134;
+            }
         }
 
         public override void Draw(GameTime gameTime)
         {
+            
             spriteBatch.Begin();
-            spriteBatch.Draw(tex, position, Color.White);
+            spriteBatch.Draw(tex, position, frames[frameIndex], Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -48,7 +72,33 @@ namespace BirdJYSP
 
         public override void Update(GameTime gameTime)
         {
-            
+            int bulletYPos = 40;
+
+            delayCounter++;
+            if (delayCounter > delay)
+            {
+                frameIndex++;
+                if (frameIndex > COL - 1)
+                {
+                    frameIndex = 0;
+                }
+                //}
+                //if (frameIndex == 0)
+                //{
+                //    bulletYPos = 40;
+                //}
+                //if (frameIndex == 1)
+                //{
+                //    bulletYPos = 164;
+                //}
+                //if (frameIndex == 2)
+                //{
+                //    bulletYPos = 288;
+                //}
+                Debug.WriteLine(bulletYPos);
+                delayCounter = 0;
+            }
+
             position -= pipeSpeed;
             
             //left

@@ -108,18 +108,19 @@ namespace BirdJYSP
                     frameIndex = 0;
                     bulletYPos = 40;
                 }
-                if (frameIndex == 0)
-                {
-                    bulletYPos = 40;
-                }
-                if (frameIndex == 1)
-                {
-                    bulletYPos = 164;
-                }
-                if (frameIndex == 2)
-                {
-                    bulletYPos = 288;
-                }
+                //}
+                //if (frameIndex == 0)
+                //{
+                //    bulletYPos = 40;
+                //}
+                //if (frameIndex == 1)
+                //{
+                //    bulletYPos = 164;
+                //}
+                //if (frameIndex == 2)
+                //{
+                //    bulletYPos = 288;
+                //}
                 Debug.WriteLine(bulletYPos);
                 delayCounter = 0;
             }
@@ -151,6 +152,7 @@ namespace BirdJYSP
 
                     //set starting point
                     bulletPos = tempLoc;
+
                     bulletSpeed = new Vector2(16, 0);
                 }
             }
