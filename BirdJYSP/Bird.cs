@@ -34,7 +34,7 @@ namespace BirdJYSP
         private Vector2 dimesion;
         private List<Rectangle> frames;
         private int frameIndex = 0;
-        private int delay;
+        private int delay = 2;
         private int delayCounter;
         private const int ROW = 3;
         
@@ -96,13 +96,16 @@ namespace BirdJYSP
 
         public override void Update(GameTime gameTime)
         {
+            int bulletYPos = 40;
             delayCounter++;
             if (delayCounter> delay)
             {
                 frameIndex++;
+                bulletYPos += 124;
                 if (frameIndex > ROW - 1)
                 {
                     frameIndex = 0;
+                    bulletYPos = 40;
                 }
                 delayCounter = 0;
             }
@@ -127,7 +130,10 @@ namespace BirdJYSP
                 if (bulletPos.X >= Shared.stage.X)
                 {
                     //bullet starting point
-                    Vector2 tempLoc = new Vector2(birdPos.X + birdTex.Width * birdScale, birdPos.Y + birdTex.Height + 10);
+                    //Vector2 tempLoc = new Vector2(birdPos.X + birdTex.Width * birdScale, birdPos.Y + birdTex.Height + 10);
+                    //
+                    Vector2 tempLoc = new Vector2(birdPos.X + birdTex.Width, birdPos.Y + bulletYPos);
+
                     //set starting point
                     bulletPos = tempLoc;
                     bulletSpeed = new Vector2(16, 0);
