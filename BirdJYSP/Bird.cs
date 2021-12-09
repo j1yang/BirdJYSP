@@ -30,6 +30,14 @@ namespace BirdJYSP
         private Rectangle bulletSrcRect;
 
         private KeyboardState oldState;
+        //added for animation of bird
+        private Vector2 dimesion;
+        private List<Rectangle> frames;
+        private int frameIndex = 0;
+        private int delay;
+        private int delayCounter;
+        private const int ROW = 3;
+        
 
         public Bird(Game game,
            SpriteBatch spriteBatch,
@@ -50,13 +58,33 @@ namespace BirdJYSP
             bulletPos = new Vector2(3000, 0);
             bulletSpeed = new Vector2(0,0);
             this.bulletTex = bulletTex;
+            //createFrames called to instantiate the list of frames in one animation cycle
+            createFrames();
+        }
+        //used to create each frame of the sprite animation
+        private void createFrames()
+        {
+            frames = new List<Rectangle>();
+            int x = 0;
+            int y = 0;
+            for (int i = 0; i < ROW; i++)
+            {
+                
+                Rectangle r = new Rectangle(x, y, 100, 80);
+                frames.Add(r);
+                y += 124;
+            }
         }
 
         public override void Draw(GameTime gameTime)
         {
             //Draw bird
+            //spriteBatch.Begin();
+            //spriteBatch.Draw(birdTex, birdPos, birdSrcRect, Color.White, rotation, origin , birdScale, SpriteEffects.None, 0.1f);
+            //spriteBatch.End();
+
             spriteBatch.Begin();
-            spriteBatch.Draw(birdTex, birdPos, birdSrcRect, Color.White, rotation, origin , birdScale, SpriteEffects.None, 0.1f);
+            spriteBatch.Draw(birdTex, birdPos, frames[frameIndex], Color.White);
             spriteBatch.End();
 
             //Draw bullet
@@ -68,6 +96,17 @@ namespace BirdJYSP
 
         public override void Update(GameTime gameTime)
         {
+            delayCounter++;
+            if (delayCounter> delay)
+            {
+                frameIndex++;
+                if (frameIndex > ROW - 1)
+                {
+                    frameIndex = 0;
+                }
+                delayCounter = 0;
+            }
+
             //Gravity down
             birdPos += birdGravity;
 

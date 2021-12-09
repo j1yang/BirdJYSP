@@ -20,8 +20,10 @@ namespace BirdJYSP
             this.spriteBatch = g._spriteBatch;
 
             Texture2D birdTex = g.Content.Load<Texture2D>("images/test");
+            Texture2D playerBirdTex = g.Content.Load<Texture2D>("images/playerBird");
             Texture2D bulletTex = g.Content.Load<Texture2D>("images/bullet");
-            Bird bird = new Bird(game, spriteBatch, birdTex, bulletTex);
+
+            Bird bird = new Bird(game, spriteBatch, playerBirdTex, bulletTex);
             this.Components.Add(bird);
 
             Random rnd = new Random();
