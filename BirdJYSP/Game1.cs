@@ -134,7 +134,6 @@ namespace BirdJYSP
 
             if (helpScene.Enabled || actionScene.Enabled)
             {
-
                 if (ks.IsKeyDown(Keys.Escape))
                 {
                     hideAllScenes();

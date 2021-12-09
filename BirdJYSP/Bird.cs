@@ -42,6 +42,7 @@ namespace BirdJYSP
             this.birdPos = new Vector2((Shared.stage.X- birdTex.Width)/5,(Shared.stage.Y - birdTex.Height)/2);
             this.birdGravity = new Vector2(0, (float)1.9);
             this.birdSpeed = new Vector2(0, -6);
+
             origin = new Vector2(0, 0);
             birdSrcRect = new Rectangle(0, 0, birdTex.Width, birdTex.Height);
             bulletSrcRect = new Rectangle(0, 0, bulletTex.Width, bulletTex.Height);
@@ -53,10 +54,12 @@ namespace BirdJYSP
 
         public override void Draw(GameTime gameTime)
         {
+            //Draw bird
             spriteBatch.Begin();
             spriteBatch.Draw(birdTex, birdPos, birdSrcRect, Color.White, rotation, origin , birdScale, SpriteEffects.None, 0.1f);
             spriteBatch.End();
 
+            //Draw bullet
             spriteBatch.Begin();
             spriteBatch.Draw(bulletTex, bulletPos, bulletSrcRect, Color.White, rotation, origin, bulletScale, SpriteEffects.None, 0.1f);
             spriteBatch.End();
@@ -65,29 +68,33 @@ namespace BirdJYSP
 
         public override void Update(GameTime gameTime)
         {
+            //Gravity down
             birdPos += birdGravity;
+
+            //Bullet moving
             bulletPos += bulletSpeed;
 
             KeyboardState ks = Keyboard.GetState();
 
             if (ks.IsKeyDown(Keys.Space) && oldState.IsKeyUp(Keys.Space))
             {
+                //if space bar clicked then bird go up
                 birdPos += birdSpeed;
-                
             }
 
             if (ks.IsKeyDown(Keys.LeftControl))
             {
-                
-                //right wall
+                //bullet passed right border
                 if (bulletPos.X >= Shared.stage.X)
                 {
+                    //bullet starting point
                     Vector2 tempLoc = new Vector2(birdPos.X + birdTex.Width * birdScale, birdPos.Y + birdTex.Height + 10);
+                    //set starting point
                     bulletPos = tempLoc;
                     bulletSpeed = new Vector2(16, 0);
                 }
             }
-            //bottom
+            //bird go under bottom border
             if (birdPos.Y >= Shared.stage.Y)
             {
                 birdPos += new Vector2(0, -80);
@@ -100,9 +107,9 @@ namespace BirdJYSP
                 }
             }
 
-            //top
+            //bird go over top border
             if (birdPos.Y <= 0)
-            {
+            {//bounce bird back
                 Vector2 hit = new Vector2(0, 6);
                 birdPos += hit;
             }
