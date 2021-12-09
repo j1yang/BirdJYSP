@@ -151,7 +151,7 @@ namespace BirdJYSP
 
                     //set starting point
                     bulletPos = tempLoc;
-                    bulletSpeed = new Vector2(40, 0);
+                    bulletSpeed = new Vector2(22, 0);
                 }
             }
             //bird go under bottom border
