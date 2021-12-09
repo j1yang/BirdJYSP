@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace BirdJYSP
@@ -97,16 +98,29 @@ namespace BirdJYSP
         public override void Update(GameTime gameTime)
         {
             int bulletYPos = 40;
+
             delayCounter++;
             if (delayCounter> delay)
             {
                 frameIndex++;
-                bulletYPos += 124;
                 if (frameIndex > ROW - 1)
                 {
                     frameIndex = 0;
                     bulletYPos = 40;
                 }
+                if (frameIndex == 0)
+                {
+                    bulletYPos = 40;
+                }
+                if (frameIndex == 1)
+                {
+                    bulletYPos = 164;
+                }
+                if (frameIndex == 2)
+                {
+                    bulletYPos = 288;
+                }
+                Debug.WriteLine(bulletYPos);
                 delayCounter = 0;
             }
 
@@ -132,7 +146,8 @@ namespace BirdJYSP
                     //bullet starting point
                     //Vector2 tempLoc = new Vector2(birdPos.X + birdTex.Width * birdScale, birdPos.Y + birdTex.Height + 10);
                     //
-                    Vector2 tempLoc = new Vector2(birdPos.X + birdTex.Width, birdPos.Y + bulletYPos);
+
+                    Vector2 tempLoc = new Vector2(birdPos.X + birdTex.Width, birdPos.Y +  bulletYPos);
 
                     //set starting point
                     bulletPos = tempLoc;
