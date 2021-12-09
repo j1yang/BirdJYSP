@@ -25,17 +25,7 @@ namespace BirdJYSP
             this.Components.Add(bird);
 
             Random rnd = new Random();
-            Vector2 p1pos = new Vector2((Shared.stage.X), (Shared.stage.Y) - rnd.Next(2, (int)Shared.stage.Y));
-            Vector2 p2pos = new Vector2((Shared.stage.X) + 296 , (Shared.stage.Y) - rnd.Next(2, (int)Shared.stage.Y));
-            Vector2 p3pos = new Vector2((Shared.stage.X) + 593, (Shared.stage.Y) - rnd.Next(2, (int)Shared.stage.Y));
-            Enemy enemy1 = new Enemy(game, spriteBatch, birdTex, p1pos);
-            this.Components.Add(enemy1);
-
-            Enemy enemy2 = new Enemy(game, spriteBatch, birdTex, p2pos);
-            this.Components.Add(enemy2);
-
-            Enemy enemy3 = new Enemy(game, spriteBatch, birdTex, p3pos);
-            this.Components.Add(enemy3);
+            
 
             //width of screen is 800
             Vector2 pipe1pos = new Vector2((Shared.stage.X), (Shared.stage.Y) - rnd.Next(20, 420));
@@ -47,7 +37,17 @@ namespace BirdJYSP
             PipeDown pipe2 = new PipeDown(game, spriteBatch, pipeDownTex, pipe2pos);
             this.Components.Add(pipe2);
 
+            Vector2 p1pos = new Vector2((Shared.stage.X), (Shared.stage.Y) - rnd.Next(2, (int)Shared.stage.Y));
+            Vector2 p2pos = new Vector2((Shared.stage.X) + 296, (Shared.stage.Y) - rnd.Next(2, (int)Shared.stage.Y));
+            Vector2 p3pos = new Vector2((Shared.stage.X) + 593, (Shared.stage.Y) - rnd.Next(2, (int)Shared.stage.Y));
+            Enemy enemy1 = new Enemy(game, spriteBatch, birdTex, p1pos);
+            this.Components.Add(enemy1);
 
+            Enemy enemy2 = new Enemy(game, spriteBatch, birdTex, p2pos);
+            this.Components.Add(enemy2);
+
+            Enemy enemy3 = new Enemy(game, spriteBatch, birdTex, p3pos);
+            this.Components.Add(enemy3);
         }
 
         public override void Draw(GameTime gameTime)
