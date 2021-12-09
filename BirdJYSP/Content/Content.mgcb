@@ -27,6 +27,18 @@
 /processorParam:TextureFormat=Compressed
 /build:fonts/regF.spritefont
 
+#begin images/About.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:images/About.jpg
+
 #begin images/background.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -87,7 +99,7 @@
 /processorParam:TextureFormat=Color
 /build:images/clouds1.png
 
-#begin images/PipeDown.png
+#begin images/HELP.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -97,9 +109,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:images/PipeDown.png
+/build:images/HELP.jpg
 
-#begin images/PipeUp.png
+#begin images/HELP1.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -109,7 +121,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:images/PipeUp.png
+/build:images/HELP1.jpg
+
+#begin images/HELP2.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:images/HELP2.jpg
 
 #begin images/test.jpg
 /importer:TextureImporter
