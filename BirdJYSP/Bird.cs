@@ -143,6 +143,7 @@ namespace BirdJYSP
                     instance.Volume = 0.3f;
                     instance.Play();
                     bulletSpeed = new Vector2(22, 0);
+                    
                 }
             }
             //bird go under bottom border
