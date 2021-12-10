@@ -62,11 +62,15 @@ namespace BirdJYSP
             Score score = new Score(game, spriteBatch/*, bird, pipe1, pipe2, enemy2, enemy3*/, font);
             this.Components.Add(score);
 
-            CollisionManager cm = new CollisionManager(game, bird,pipe1, pipe2, enemy2, enemy3, score, losingSound, pointUpSound);
-            this.Components.Add(cm);
             
+            
+            GameOver gameOver = new GameOver(game, spriteBatch, font);
+            gameOver.Visible = false;
+            //Make invisible, when player loses, make visibile
+            this.Components.Add(gameOver);
 
-
+            CollisionManager cm = new CollisionManager(game, bird, pipe1, pipe2, enemy2, enemy3, score, losingSound, pointUpSound);
+            this.Components.Add(cm);
         }
 
         public override void Draw(GameTime gameTime)
