@@ -33,11 +33,14 @@ namespace BirdJYSP
         private int delayCounter;
         private const int COL = 3;
 
+        public Vector2 Position { get => position; set => position = value; }
+        public Vector2 StartLocation { get => startLocation; set => startLocation = value; }
+
         public Enemy(Game game, SpriteBatch spriteBatch, Texture2D tex, Vector2 position) : base(game)
         {
             this.spriteBatch = spriteBatch;
             this.tex = tex;
-            this.position = position;
+            this.Position = position;
             //this.stage = stage;
             this.pipeSpeed = new Vector2(5, 0);
             //set origin of pipe to 0,0 (top left)
@@ -64,7 +67,7 @@ namespace BirdJYSP
         {
             
             spriteBatch.Begin();
-            spriteBatch.Draw(tex, position, frames[frameIndex], Color.White);
+            spriteBatch.Draw(tex, Position, frames[frameIndex], Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -99,14 +102,16 @@ namespace BirdJYSP
                 delayCounter = 0;
             }
 
-            position -= pipeSpeed;
+            Position -= pipeSpeed;
             
             //left
-            if(position.X < 0)
+            if(Position.X < 0)
             {
                 Random rnd = new Random();
-                position = startLocation;
-                position.Y = rnd.Next(2, (int)Shared.stage.Y);
+                Vector2 tempLoc = new Vector2((Shared.stage.X) + 800, (Shared.stage.Y) - rnd.Next(50, 420));
+                StartLocation = tempLoc;
+                Position = StartLocation;
+                Visible = true;
             }
 
             base.Update(gameTime);
@@ -114,7 +119,7 @@ namespace BirdJYSP
 
         public Rectangle getBounds()
         {
-            return new Rectangle((int)position.X, (int)position.Y, tex.Width, tex.Height);
+            return new Rectangle((int)Position.X, (int)Position.Y, tex.Width, tex.Height);
         }
 
     }
