@@ -13,6 +13,13 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin fonts/GameTitleFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:fonts/GameTitleFont.spritefont
+
 #begin fonts/highlightF.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor

@@ -9,8 +9,9 @@ namespace BirdJYSP
 {
     class StartScene : GameScene
     {
-        //comment test
+        
         private MenuComponent menu;
+        private GameTitle gameTitle;
         public MenuComponent Menu { get => menu; set => menu = value; }
 
         private SpriteBatch spriteBatch;
@@ -20,11 +21,18 @@ namespace BirdJYSP
             Game1 g = (Game1)game;
 
             this.spriteBatch = g._spriteBatch;
+
+
             SpriteFont regularFont = g.Content.Load<SpriteFont>("fonts/regF");
             SpriteFont highlightFont = g.Content.Load<SpriteFont>("fonts/highlightF");
 
             menu = new MenuComponent(g, spriteBatch, regularFont, highlightFont, menuItems);
             this.Components.Add(menu);
+
+            SpriteFont titleFont = g.Content.Load<SpriteFont>("fonts/GameTitleFont");
+
+            gameTitle = new GameTitle(g, spriteBatch, titleFont);
+            this.Components.Add(gameTitle);
         }
     }
 }
