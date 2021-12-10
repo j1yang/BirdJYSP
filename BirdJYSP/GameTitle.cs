@@ -20,7 +20,6 @@ namespace BirdJYSP
             this.spriteBatch = spriteBatch;
             this.font = font;
             pos = new Vector2(Shared.stage.X / 6, Shared.stage.Y / 6);
-
         }
 
         public override void Draw(GameTime gameTime)
