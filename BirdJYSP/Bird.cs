@@ -37,13 +37,14 @@ namespace BirdJYSP
         private int delayCounter;
         private const int ROW = 3;
 
-        private SoundEffect gunSound;
+        private SoundEffect gunSound, losingSound;
 
         public Bird(Game game,
            SpriteBatch spriteBatch,
            Texture2D birdTex,
            Texture2D bulletTex,
-           SoundEffect gunSound
+           SoundEffect gunSound,
+           SoundEffect losingSound
            ) : base(game)
         {
             this.spriteBatch = spriteBatch;
@@ -63,6 +64,7 @@ namespace BirdJYSP
             createFrames();
 
             this.gunSound = gunSound;
+            this.losingSound = losingSound;
         }
         //used to create each frame of the sprite animation
         private void createFrames()
@@ -146,6 +148,10 @@ namespace BirdJYSP
             //bird go under bottom border
             if (birdPos.Y >= Shared.stage.Y)
             {
+                var instance = losingSound.CreateInstance();
+                instance.Volume = 0.8f;
+                instance.Play();
+                bulletSpeed = new Vector2(22, 0);
                 birdPos += new Vector2(0, -80);
                 if (birdPos.Y == Shared.stage.Y-birdTex.Height*2)
                 {

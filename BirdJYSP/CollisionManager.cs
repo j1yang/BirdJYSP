@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,7 +15,7 @@ namespace BirdJYSP
         private Enemy enemy1;
         private Enemy enemy2;
         private Score score;
-
+        private SoundEffect losingSound, pointUpSound;
 
 
         //private SoundEffect hitSound;
@@ -24,7 +25,9 @@ namespace BirdJYSP
             PipeDown pipe2,
             Enemy enemy1,
             Enemy enemy2,
-            Score score) : base(game)
+            Score score,
+           SoundEffect losingSound,
+           SoundEffect pointUpSound) : base(game)
         {
             this.bird = bird;
             this.pipe1 = pipe1;
@@ -32,6 +35,9 @@ namespace BirdJYSP
             this.enemy1 = enemy1;
             this.enemy2 = enemy2;
             this.score = score;
+            this.losingSound = losingSound;
+            this.pointUpSound = pointUpSound;
+
         }
 
         public override void Update(GameTime gameTime)
@@ -46,27 +52,71 @@ namespace BirdJYSP
             //palyer bird collides  with enemy bird
             if (birdRec.Intersects(enemy1Rec) && enemy1.Visible || birdRec.Intersects(enemy2Rec) && enemy2.Visible)
             {
-                
+                var instance = losingSound.CreateInstance();
+                instance.Volume = 0.8f;
+                instance.Play();
                 bird.Enabled = false;
                 bird.Visible = false;
+                pipe1.Enabled = false;
+                pipe1.Visible = false;
+                pipe2.Enabled = false;
+                pipe2.Visible = false;
+                enemy1.Enabled = false;
+                enemy1.Visible = false;
+                enemy2.Enabled = false;
+                enemy2.Visible = false;
             }
 
-            //palyer bird collides  with pipe
-            if (birdRec.Intersects(pipe1Rec) || birdRec.Intersects(pipe2Rec))
+            //palyer bird collides  with pipe1
+            if (birdRec.Intersects(pipe1Rec) && pipe1.Visible)
             {
+                var instance = losingSound.CreateInstance();
+                instance.Volume = 0.5f;
+                instance.Play();
                 bird.Enabled = false;
                 bird.Visible = false;
+                pipe1.Enabled = false;
+                pipe1.Visible = false;
+                pipe2.Enabled = false;
+                pipe2.Visible = false;
+                enemy1.Enabled = false;
+                enemy1.Visible = false;
+                enemy2.Enabled = false;
+                enemy2.Visible = false;
+            }
+            //palyer bird collides  with pipe2
+            if (birdRec.Intersects(pipe2Rec) && pipe2.Visible)
+            {
+                var instance = losingSound.CreateInstance();
+                instance.Volume = 0.5f;
+                instance.Play();
+                bird.Enabled = false;
+                bird.Visible = false;
+                pipe1.Enabled = false;
+                pipe1.Visible = false;
+                pipe2.Enabled = false;
+                pipe2.Visible = false;
+                enemy1.Enabled = false;
+                enemy1.Visible = false;
+                enemy2.Enabled = false;
+                enemy2.Visible = false;
             }
 
             //bullet collides with enemy bird
             if (bulletRec.Intersects(enemy1Rec) && enemy1.Visible)
             {
+                var instance = pointUpSound.CreateInstance();
+                instance.Volume = 0.5f;
+                instance.Play();
                 score.CurrentScore++;
                 enemy1.Visible = false;
             }
             //bullet collides with enemy bird
             if (bulletRec.Intersects(enemy2Rec) && enemy2.Visible)
             {
+                var instance = pointUpSound.CreateInstance();
+                instance.Volume = 0.5f;
+                instance.Play();
                 score.CurrentScore++;
                 enemy2.Visible = false;
             }
