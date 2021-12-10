@@ -174,7 +174,6 @@ namespace BirdJYSP
                 Vector2 hit = new Vector2(0, 9);
                 birdPos += hit;
             }
-            Debug.WriteLine(birdPos.Y);
             base.Update(gameTime);
         }
 

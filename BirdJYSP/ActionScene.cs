@@ -11,11 +11,10 @@ namespace BirdJYSP
     class ActionScene : GameScene
     {
         private SpriteBatch spriteBatch;
-        public int score = 0;
         public Pipe pipe1;
         public PipeDown pipe2;
+        public Bird bird;
         
-
         public ActionScene(Game game) : base(game)
         {
             Game1 g = (Game1)game;
@@ -25,7 +24,7 @@ namespace BirdJYSP
             Texture2D playerBirdTex = g.Content.Load<Texture2D>("images/playerBird");
             Texture2D bulletTex = g.Content.Load<Texture2D>("images/bullet");
 
-            Bird bird = new Bird(game, spriteBatch, playerBirdTex, bulletTex);
+            bird = new Bird(game, spriteBatch, playerBirdTex, bulletTex);
             this.Components.Add(bird);
 
             Random rnd = new Random();
@@ -53,6 +52,10 @@ namespace BirdJYSP
 
             CollisionManager cm = new CollisionManager(game, bird,pipe1, pipe2, enemy2, enemy3);
             this.Components.Add(cm);
+            Score score = new Score(game, bird, pipe1, pipe2, enemy2, enemy3);
+            this.Components.Add(score);
+
+
         }
 
         public override void Draw(GameTime gameTime)
