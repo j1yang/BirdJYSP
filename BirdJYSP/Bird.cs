@@ -49,8 +49,8 @@ namespace BirdJYSP
             this.spriteBatch = spriteBatch;
             this.birdTex = birdTex;
             this.birdPos = new Vector2((Shared.stage.X- birdTex.Width)/5,(Shared.stage.Y - birdTex.Height)/2);
-            this.birdGravity = new Vector2(0, (float)1.9);
-            this.birdSpeed = new Vector2(0, -6);
+            this.birdGravity = new Vector2(0, (float)3.3);
+            this.birdSpeed = new Vector2(0, -11);
 
             origin = new Vector2(0, 0);
             birdSrcRect = new Rectangle(0, 0, birdTex.Width, birdTex.Height);
@@ -171,7 +171,7 @@ namespace BirdJYSP
             //bird go over top border
             if (birdPos.Y <= 0)
             {//bounce bird back
-                Vector2 hit = new Vector2(0, 6);
+                Vector2 hit = new Vector2(0, 9);
                 birdPos += hit;
             }
 
