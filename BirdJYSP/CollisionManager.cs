@@ -61,11 +61,13 @@ namespace BirdJYSP
             //bullet collides with enemy bird
             if (bulletRec.Intersects(enemy1Rec) && enemy1.Visible)
             {
+                score.CurrentScore++;
                 enemy1.Visible = false;
             }
             //bullet collides with enemy bird
             if (bulletRec.Intersects(enemy2Rec) && enemy2.Visible)
             {
+                score.CurrentScore++;
                 enemy2.Visible = false;
             }
 
