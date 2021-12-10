@@ -11,7 +11,9 @@ namespace BirdJYSP
     class ActionScene : GameScene
     {
         private SpriteBatch spriteBatch;
-
+        public int score = 0;
+        public Pipe pipe1;
+        public PipeDown pipe2;
         
 
         public ActionScene(Game game) : base(game)
@@ -34,9 +36,9 @@ namespace BirdJYSP
             Vector2 pipe2pos = new Vector2((Shared.stage.X) + 800, rnd.Next(-400, -200));
             Texture2D pipeUpTex = g.Content.Load<Texture2D>("images/PipeUp");
             Texture2D pipeDownTex = g.Content.Load<Texture2D>("images/PipeDown");
-            Pipe pipe1 = new Pipe(game, spriteBatch, pipeUpTex, pipe1pos);
+            pipe1 = new Pipe(game, spriteBatch, pipeUpTex, pipe1pos);
             this.Components.Add(pipe1);
-            PipeDown pipe2 = new PipeDown(game, spriteBatch, pipeDownTex, pipe2pos);
+            pipe2 = new PipeDown(game, spriteBatch, pipeDownTex, pipe2pos);
             this.Components.Add(pipe2);
 
             Vector2 p2pos = new Vector2((Shared.stage.X) + 400, (Shared.stage.Y) - rnd.Next(2, (int)Shared.stage.Y));
@@ -57,6 +59,7 @@ namespace BirdJYSP
 
         public override void Update(GameTime gameTime)
         {
+            
             base.Update(gameTime);
 
         }

@@ -180,7 +180,10 @@ namespace BirdJYSP
 
         public Rectangle getBirdBounds()
         {
-            return new Rectangle((int)pos.X, (int)pos.Y, tex.Width, tex.Height);
+            return new Rectangle((int)birdPos.X, (int)birdPos.Y, birdTex.Width, birdTex.Height);
+            //tex x = 100
+            //tex y = 80
+
         }
 
         public Rectangle getBulletBounds()
