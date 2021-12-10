@@ -39,7 +39,7 @@ namespace BirdJYSP
             Rectangle enemy2Rec = enemy2.getBounds();
 
             //palyer bird collides  with enemy bird
-            if (birdRec.Intersects(enemy1Rec) || birdRec.Intersects(enemy2Rec))
+            if (birdRec.Intersects(enemy1Rec) && enemy1.Visible || birdRec.Intersects(enemy2Rec) && enemy2.Visible)
             {
                 
                 bird.Enabled = false;
