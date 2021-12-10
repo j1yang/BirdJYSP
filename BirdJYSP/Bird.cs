@@ -20,11 +20,9 @@ namespace BirdJYSP
         private Vector2 birdSpeed;
 
         private Vector2 bulletPos;
-        private Vector2 bulletGravity;
         private Vector2 bulletSpeed;
 
         private float rotation = 0;
-        private float birdScale = 3.1f;
         private float bulletScale = .3f;
 
         private Vector2 origin;
@@ -33,7 +31,6 @@ namespace BirdJYSP
 
         private KeyboardState oldState;
         //added for animation of bird
-        private Vector2 dimesion;
         private List<Rectangle> frames;
         private int frameIndex = 0;
         private int delay = 2;

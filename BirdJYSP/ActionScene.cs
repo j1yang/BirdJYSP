@@ -15,7 +15,6 @@ namespace BirdJYSP
         public Pipe pipe1;
         public PipeDown pipe2;
         public Bird bird;
-        
         public ActionScene(Game game) : base(game)
         {
             Game1 g = (Game1)game;
@@ -23,7 +22,6 @@ namespace BirdJYSP
             //-------------------------------------------------------------------------------
             SoundEffect pointUpSound = g.Content.Load<SoundEffect>("sounds/GetPoint");
             SoundEffect gunSound = g.Content.Load<SoundEffect>("sounds/gunSound1");
-            SoundEffect loseSound = g.Content.Load<SoundEffect>("sounds/lose");
 
             //-------------------------------------------------------------------------------
             
