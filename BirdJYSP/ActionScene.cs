@@ -15,7 +15,6 @@ namespace BirdJYSP
         public Pipe pipe1;
         public PipeDown pipe2;
         public Bird bird;
-        
         public ActionScene(Game game) : base(game)
         {
             Game1 g = (Game1)game;
