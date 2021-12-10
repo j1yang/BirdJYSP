@@ -1,4 +1,4 @@
-﻿using FlappyBirdJYSP;
+﻿
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -87,9 +87,34 @@ namespace BirdJYSP
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            //    Exit();
+            KeyboardState ks = Keyboard.GetState();
 
+            if (helpScene.Enabled)
+            {
+                if (ks.IsKeyDown(Keys.Escape))
+                {
+                    helpScene.hide();
+                    startScene.show();
+                }
+            }
+            if (highScoreScene.Enabled)
+            {
+                if (ks.IsKeyDown(Keys.Escape))
+                {
+                    highScoreScene.hide();
+                    startScene.show();
+                }
+            }
+            if (aboutScene.Enabled)
+            {
+                if (ks.IsKeyDown(Keys.Escape))
+                {
+                    aboutScene.hide();
+                    startScene.show();
+                }
+            }
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -102,6 +127,7 @@ namespace BirdJYSP
             // TODO: Add your drawing code here
             int selectedIndex = 0;
             KeyboardState ks = Keyboard.GetState();
+
 
             if (startScene.Enabled)
             {
@@ -132,14 +158,7 @@ namespace BirdJYSP
                 }
             }
 
-            if (helpScene.Enabled || actionScene.Enabled)
-            {
-                if (ks.IsKeyDown(Keys.Escape))
-                {
-                    hideAllScenes();
-                    startScene.show();
-                }
-            }
+            
 
             base.Draw(gameTime);
         }
