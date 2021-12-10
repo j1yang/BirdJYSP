@@ -174,14 +174,14 @@ namespace BirdJYSP
                 Vector2 hit = new Vector2(0, 9);
                 birdPos += hit;
             }
-
+            Debug.WriteLine(birdPos.Y);
             base.Update(gameTime);
         }
 
         public Rectangle getBirdBounds()
         {
             
-            return new Rectangle((int)birdPos.X, (int)birdPos.Y, birdTex.Width, birdTex.Height);
+            return new Rectangle((int)birdPos.X, (int)birdPos.Y, 100, 80);
             //tex x = 100
             //tex y = 80
 
