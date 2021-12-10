@@ -59,7 +59,9 @@ namespace BirdJYSP
             Enemy enemy3 = new Enemy(game, spriteBatch, birdTex, p3pos);
             this.Components.Add(enemy3);
 
-            Score score = new Score(game, bird, pipe1, pipe2, enemy2, enemy3);
+            SpriteFont font = g.Content.Load<SpriteFont>("fonts/GameTitleFont");
+
+            Score score = new Score(game, spriteBatch/*, bird, pipe1, pipe2, enemy2, enemy3*/, font);
             this.Components.Add(score);
 
             CollisionManager cm = new CollisionManager(game, bird,pipe1, pipe2, enemy2, enemy3, score);

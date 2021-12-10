@@ -69,6 +69,14 @@ namespace BirdJYSP
                 enemy2.Visible = false;
             }
 
+            if (pipe1Rec.X <= 0)
+            {
+                score.CurrentScore++;
+            }
+            if (pipe2Rec.X <= 0)
+            {
+                score.CurrentScore++;
+            }
 
 
             base.Update(gameTime);
