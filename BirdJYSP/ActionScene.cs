@@ -21,7 +21,7 @@ namespace BirdJYSP
 
             //-------------------------------------------------------------------------------
             SoundEffect pointUpSound = g.Content.Load<SoundEffect>("sounds/GetPoint");
-            SoundEffect gunSound = g.Content.Load<SoundEffect>("sounds/gunSound1");
+            SoundEffect gunSound = g.Content.Load<SoundEffect>("sounds/gunSound2");
 
             //-------------------------------------------------------------------------------
             
