@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -38,12 +39,14 @@ namespace BirdJYSP
         private int delay = 2;
         private int delayCounter;
         private const int ROW = 3;
-        
+
+        private SoundEffect gunSound;
 
         public Bird(Game game,
            SpriteBatch spriteBatch,
            Texture2D birdTex,
-           Texture2D bulletTex
+           Texture2D bulletTex,
+           SoundEffect gunSound
            ) : base(game)
         {
             this.spriteBatch = spriteBatch;
@@ -61,6 +64,8 @@ namespace BirdJYSP
             this.bulletTex = bulletTex;
             //createFrames called to instantiate the list of frames in one animation cycle
             createFrames();
+
+            this.gunSound = gunSound;
         }
         //used to create each frame of the sprite animation
         private void createFrames()
@@ -98,7 +103,6 @@ namespace BirdJYSP
         public override void Update(GameTime gameTime)
         {
             int bulletYPos = 40;
-
             delayCounter++;
             if (delayCounter> delay)
             {
@@ -108,20 +112,6 @@ namespace BirdJYSP
                     frameIndex = 0;
                     bulletYPos = 40;
                 }
-                //}
-                //if (frameIndex == 0)
-                //{
-                //    bulletYPos = 40;
-                //}
-                //if (frameIndex == 1)
-                //{
-                //    bulletYPos = 164;
-                //}
-                //if (frameIndex == 2)
-                //{
-                //    bulletYPos = 288;
-                //}
-                
                 delayCounter = 0;
             }
 
@@ -137,17 +127,15 @@ namespace BirdJYSP
             {
                 //if space bar clicked then bird go up
                 birdPos += birdSpeed;
+                
             }
 
             if (ks.IsKeyDown(Keys.LeftControl))
             {
+                
                 //bullet passed right border
                 if (bulletPos.X >= Shared.stage.X)
                 {
-                    //bullet starting point
-                    //Vector2 tempLoc = new Vector2(birdPos.X + birdTex.Width * birdScale, birdPos.Y + birdTex.Height + 10);
-                    //
-
                     Vector2 tempLoc = new Vector2(birdPos.X + birdTex.Width, birdPos.Y +  bulletYPos);
 
                     //set starting point
