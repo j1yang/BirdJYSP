@@ -36,6 +36,7 @@ namespace BirdJYSP
 
         protected override void LoadContent()
         {
+           
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             Vector2 stage = new Vector2(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);

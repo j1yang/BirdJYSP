@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -18,13 +19,21 @@ namespace BirdJYSP
         public ActionScene(Game game) : base(game)
         {
             Game1 g = (Game1)game;
+
+            //-------------------------------------------------------------------------------
+            SoundEffect pointUpSound = g.Content.Load<SoundEffect>("sounds/GetPoint");
+            SoundEffect gunSound = g.Content.Load<SoundEffect>("sounds/gunSound1");
+            SoundEffect loseSound = g.Content.Load<SoundEffect>("sounds/lose");
+
+            //-------------------------------------------------------------------------------
+            
             this.spriteBatch = g._spriteBatch;
 
             Texture2D birdTex = g.Content.Load<Texture2D>("images/enemyBird");
             Texture2D playerBirdTex = g.Content.Load<Texture2D>("images/playerBird");
             Texture2D bulletTex = g.Content.Load<Texture2D>("images/bullet");
 
-            bird = new Bird(game, spriteBatch, playerBirdTex, bulletTex);
+            Bird bird = new Bird(game, spriteBatch, playerBirdTex, bulletTex, gunSound);
             this.Components.Add(bird);
 
             Random rnd = new Random();
