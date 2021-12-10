@@ -53,7 +53,7 @@ namespace BirdJYSP
             }
 
             //bullet collides with enemy bird
-            if (birdRec.Intersects(pipe1Rec) || birdRec.Intersects(pipe2Rec))
+            if (birdRec.Intersects(enemy1Rec) || birdRec.Intersects(enemy2Rec))
             {
 
             }
