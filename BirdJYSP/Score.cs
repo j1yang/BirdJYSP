@@ -20,12 +20,13 @@ namespace BirdJYSP
         //private SoundEffect hitSound;
         public Score(Game game,
             SpriteBatch spriteBatch,
-            SpriteFont font) : base(game)
+            SpriteFont font,
+            Vector2 pos) : base(game)
         {
             this.spriteBatch = spriteBatch;
 
             this.font = font;
-            pos = new Vector2(Shared.stage.X - 180, 10);
+            this.pos = pos;
 
         }
 
