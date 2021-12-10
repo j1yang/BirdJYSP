@@ -31,8 +31,11 @@ namespace BirdJYSP
             Texture2D playerBirdTex = g.Content.Load<Texture2D>("images/playerBird");
             Texture2D bulletTex = g.Content.Load<Texture2D>("images/bullet");
 
-            Bird bird = new Bird(game, spriteBatch, playerBirdTex, bulletTex, gunSound, losingSound);
+            Bird bird = new Bird(game, spriteBatch, playerBirdTex, losingSound);
             this.Components.Add(bird);
+
+            Bullet bullet = new Bullet(game, spriteBatch, bird, bulletTex, gunSound);
+            this.Components.Add(bullet);
 
             Random rnd = new Random();
             
@@ -62,7 +65,7 @@ namespace BirdJYSP
             Score score = new Score(game, spriteBatch/*, bird, pipe1, pipe2, enemy2, enemy3*/, font);
             this.Components.Add(score);
 
-            CollisionManager cm = new CollisionManager(game, bird,pipe1, pipe2, enemy2, enemy3, score, losingSound, pointUpSound);
+            CollisionManager cm = new CollisionManager(game, bird, bullet, pipe1, pipe2, enemy2, enemy3, score, losingSound, pointUpSound);
             this.Components.Add(cm);
             
 

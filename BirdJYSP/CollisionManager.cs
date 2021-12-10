@@ -10,6 +10,7 @@ namespace BirdJYSP
     {
 
         private Bird bird;
+        private Bullet bullet;
         private Pipe pipe1;
         private PipeDown pipe2;
         private Enemy enemy1;
@@ -21,6 +22,7 @@ namespace BirdJYSP
         //private SoundEffect hitSound;
         public CollisionManager(Game game,
             Bird bird,
+            Bullet bullet,
             Pipe pipe1,
             PipeDown pipe2,
             Enemy enemy1,
@@ -30,6 +32,7 @@ namespace BirdJYSP
            SoundEffect pointUpSound) : base(game)
         {
             this.bird = bird;
+            this.bullet = bullet;
             this.pipe1 = pipe1;
             this.pipe2 = pipe2;
             this.enemy1 = enemy1;
@@ -46,6 +49,8 @@ namespace BirdJYSP
             instance.Play();
             bird.Enabled = false;
             bird.Visible = false;
+            bullet.Enabled = false;
+            bullet.Visible = false;
             pipe1.Enabled = false;
             pipe1.Visible = false;
             pipe2.Enabled = false;
@@ -58,8 +63,8 @@ namespace BirdJYSP
 
         public override void Update(GameTime gameTime)
         {
-            Rectangle birdRec = bird.getBirdBounds();
-            Rectangle bulletRec = bird.getBulletBounds();
+            Rectangle birdRec = bird.getBounds();
+            Rectangle bulletRec = bullet.getBulletBounds();
             Rectangle pipe1Rec = pipe1.getBounds();
             Rectangle pipe2Rec = pipe2.getBounds();
             Rectangle enemy1Rec = enemy1.getBounds();
@@ -83,22 +88,24 @@ namespace BirdJYSP
             }
 
             //bullet collides with enemy bird
-            if (bulletRec.Intersects(enemy1Rec) && enemy1.Visible)
+            if (bulletRec.Intersects(enemy1Rec) && enemy1.Visible && bullet.Visible)
             {
                 var instance = pointUpSound.CreateInstance();
                 instance.Volume = 0.5f;
                 instance.Play();
                 score.CurrentScore++;
                 enemy1.Visible = false;
+                bullet.Visible = false;
             }
             //bullet collides with enemy bird
-            if (bulletRec.Intersects(enemy2Rec) && enemy2.Visible)
+            if (bulletRec.Intersects(enemy2Rec) && enemy2.Visible && bullet.Visible)
             {
                 var instance = pointUpSound.CreateInstance();
                 instance.Volume = 0.5f;
                 instance.Play();
                 score.CurrentScore++;
                 enemy2.Visible = false;
+                bullet.Visible = false;
             }
 
             if (pipe1Rec.X <= 0)

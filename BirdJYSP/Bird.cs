@@ -13,21 +13,16 @@ namespace BirdJYSP
     {
         private SpriteBatch spriteBatch;
         private Texture2D birdTex;
-        private Texture2D bulletTex;
 
         private Vector2 birdPos;
         private Vector2 birdGravity;
         private Vector2 birdSpeed;
-
-        private Vector2 bulletPos;
-        private Vector2 bulletSpeed;
 
         private float rotation = 0;
         private float bulletScale = .3f;
 
         private Vector2 origin;
         private Rectangle birdSrcRect;
-        private Rectangle bulletSrcRect;
 
         private KeyboardState oldState;
         //added for animation of bird
@@ -37,33 +32,28 @@ namespace BirdJYSP
         private int delayCounter;
         private const int ROW = 3;
 
-        private SoundEffect gunSound, losingSound;
+        private SoundEffect losingSound;
+
+        public Vector2 BirdPos { get => birdPos; set => birdPos = value; }
+        public Texture2D BirdTex { get => birdTex; set => birdTex = value; }
 
         public Bird(Game game,
            SpriteBatch spriteBatch,
            Texture2D birdTex,
-           Texture2D bulletTex,
-           SoundEffect gunSound,
            SoundEffect losingSound
            ) : base(game)
         {
             this.spriteBatch = spriteBatch;
-            this.birdTex = birdTex;
-            this.birdPos = new Vector2((Shared.stage.X- birdTex.Width)/5,(Shared.stage.Y - birdTex.Height)/2);
+            this.BirdTex = birdTex;
+            this.BirdPos = new Vector2((Shared.stage.X- birdTex.Width)/5,(Shared.stage.Y - birdTex.Height)/2);
             this.birdGravity = new Vector2(0, (float)3.3);
             this.birdSpeed = new Vector2(0, -11);
 
             origin = new Vector2(0, 0);
             birdSrcRect = new Rectangle(0, 0, birdTex.Width, birdTex.Height);
-            bulletSrcRect = new Rectangle(0, 0, bulletTex.Width, bulletTex.Height);
-
-            bulletPos = new Vector2(3000, 0);
-            bulletSpeed = new Vector2(0,0);
-            this.bulletTex = bulletTex;
             //createFrames called to instantiate the list of frames in one animation cycle
             createFrames();
 
-            this.gunSound = gunSound;
             this.losingSound = losingSound;
         }
         //used to create each frame of the sprite animation
@@ -89,13 +79,13 @@ namespace BirdJYSP
             //spriteBatch.End();
 
             spriteBatch.Begin();
-            spriteBatch.Draw(birdTex, birdPos, frames[frameIndex], Color.White);
+            spriteBatch.Draw(BirdTex, BirdPos, frames[frameIndex], Color.White);
             spriteBatch.End();
 
             //Draw bullet
-            spriteBatch.Begin();
-            spriteBatch.Draw(bulletTex, bulletPos, bulletSrcRect, Color.White, rotation, origin, bulletScale, SpriteEffects.None, 0.1f);
-            spriteBatch.End();
+            //spriteBatch.Begin();
+            //spriteBatch.Draw(bulletTex, bulletPos, bulletSrcRect, Color.White, rotation, origin, bulletScale, SpriteEffects.None, 0.1f);
+            //spriteBatch.End();
             base.Draw(gameTime);
         }
 
@@ -115,75 +105,55 @@ namespace BirdJYSP
             }
 
             //Gravity down
-            birdPos += birdGravity;
+            BirdPos += birdGravity;
 
             //Bullet moving
-            bulletPos += bulletSpeed;
+            //bulletPos += bulletSpeed;
 
             KeyboardState ks = Keyboard.GetState();
 
             if (ks.IsKeyDown(Keys.Space) && oldState.IsKeyUp(Keys.Space))
             {
                 //if space bar clicked then bird go up
-                birdPos += birdSpeed;
+                BirdPos += birdSpeed;
                 
             }
 
-            if (ks.IsKeyDown(Keys.LeftControl))
-            {
-                
-                //bullet passed right border
-                if (bulletPos.X >= Shared.stage.X)
-                {
-                    Vector2 tempLoc = new Vector2(birdPos.X + birdTex.Width, birdPos.Y +  bulletYPos);
-
-                    //set starting point
-                    bulletPos = tempLoc;
-                    var instance = gunSound.CreateInstance();
-                    instance.Volume = 0.3f;
-                    instance.Play();
-                    bulletSpeed = new Vector2(22, 0);
-                    
-                }
-            }
             //bird go under bottom border
-            if (birdPos.Y >= Shared.stage.Y)
+            if (BirdPos.Y >= Shared.stage.Y)
             {
                 var instance = losingSound.CreateInstance();
                 instance.Volume = 0.8f;
                 instance.Play();
-                bulletSpeed = new Vector2(22, 0);
-                birdPos += new Vector2(0, -80);
-                if (birdPos.Y == Shared.stage.Y-birdTex.Height*2)
+
+                BirdPos += new Vector2(0, -80);
+                if (BirdPos.Y == Shared.stage.Y-BirdTex.Height*2)
                 {
                     this.Enabled = false;
                     this.Visible = false;
 
-                    this.birdPos = new Vector2(-10000, -10000);
+                    this.BirdPos = new Vector2(-10000, -10000);
                 }
             }
 
             //bird go over top border
-            if (birdPos.Y <= 0)
+            if (BirdPos.Y <= 0)
             {//bounce bird back
                 Vector2 hit = new Vector2(0, 9);
-                birdPos += hit;
+                BirdPos += hit;
             }
             base.Update(gameTime);
         }
 
-        public Rectangle getBirdBounds()
+        public Rectangle getBounds()
         {
             
-            return new Rectangle((int)birdPos.X, (int)birdPos.Y, 100, 80);
+            return new Rectangle((int)BirdPos.X, (int)BirdPos.Y, 100, 80);
             //tex x = 100
             //tex y = 80
 
         }
 
-        public Rectangle getBulletBounds()
-        {
-            return new Rectangle((int)bulletPos.X, (int)bulletPos.Y, bulletTex.Width, bulletTex.Height);
-        }
+        
     }
 }
