@@ -137,7 +137,9 @@ namespace BirdJYSP
 
                     //set starting point
                     bulletPos = tempLoc;
-                    gunSound.Play();
+                    var instance = gunSound.CreateInstance();
+                    instance.Volume = 0.3f;
+                    instance.Play();
                     bulletSpeed = new Vector2(22, 0);
                 }
             }
