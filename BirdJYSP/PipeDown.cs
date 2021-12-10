@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BirdJYSP
 {
-    class PipeDown : DrawableGameComponent
+    public class PipeDown : DrawableGameComponent
     {
         //Variables for an enemy
         private SpriteBatch spriteBatch;

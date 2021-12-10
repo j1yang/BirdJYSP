@@ -10,7 +10,7 @@ namespace BirdJYSP
 
         private Bird bird;
         private Pipe pipe1;
-        private Pipe pipe2;
+        private PipeDown pipe2;
         private Enemy enemy1;
         private Enemy enemy2;
 
@@ -18,7 +18,7 @@ namespace BirdJYSP
         public CollisionManager(Game game,
             Bird bird,
             Pipe pipe1,
-            Pipe pipe2,
+            PipeDown pipe2,
             Enemy enemy1,
             Enemy enemy2) : base(game)
         {
@@ -44,12 +44,15 @@ namespace BirdJYSP
                 //ball.Speed.Y = -ball.Speed.Y;
                 //ball.Speed = new Vector2(ball.Speed.X, -Math.Abs(-ball.Speed.Y));
                 //hitSound.Play();
+                bird.Enabled = false;
+                bird.Visible = false;
             }
 
             //palyer bird collides  with pipe
             if (birdRec.Intersects(pipe1Rec) || birdRec.Intersects(pipe2Rec))
             {
-                
+                bird.Enabled = false;
+                bird.Visible = false;
             }
 
             //bullet collides with enemy bird

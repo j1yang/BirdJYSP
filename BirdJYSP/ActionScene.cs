@@ -50,6 +50,9 @@ namespace BirdJYSP
 
             Enemy enemy3 = new Enemy(game, spriteBatch, birdTex, p3pos);
             this.Components.Add(enemy3);
+
+            CollisionManager cm = new CollisionManager(game, bird,pipe1, pipe2, enemy2, enemy3);
+            this.Components.Add(cm);
         }
 
         public override void Draw(GameTime gameTime)
