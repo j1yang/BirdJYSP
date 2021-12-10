@@ -23,8 +23,8 @@ namespace BirdJYSP
         private static Random rnd = new Random();
         //width is 800
         //height is 480
-        private Vector2 startLocation = new Vector2((Shared.stage.X), (Shared.stage.Y) - rnd.Next(40, 420));
-        private Vector2 respawn = new Vector2(((Shared.stage.X)), rnd.Next(40, 420));
+        private Vector2 startLocation = new Vector2((Shared.stage.X), (Shared.stage.Y) - rnd.Next(100, 290));
+        private Vector2 respawn = new Vector2(((Shared.stage.X)), rnd.Next(100, 290));
 
         public Pipe(Game game, SpriteBatch spriteBatch, Texture2D tex, Vector2 position) : base(game)
         {
@@ -57,7 +57,7 @@ namespace BirdJYSP
             {
                 Random rnd = new Random();
                 position.X = Shared.stage.X + 800;
-                position.Y = rnd.Next(40, 290);
+                position.Y = rnd.Next(100, 380);
             }
 
             base.Update(gameTime);

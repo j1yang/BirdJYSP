@@ -38,7 +38,7 @@ namespace BirdJYSP
             
 
             //width of screen is 800
-            Vector2 pipe1pos = new Vector2((Shared.stage.X), (Shared.stage.Y) - rnd.Next(20, 360));
+            Vector2 pipe1pos = new Vector2((Shared.stage.X), (Shared.stage.Y) - rnd.Next(100, 380));
             Vector2 pipe2pos = new Vector2((Shared.stage.X) + 800, rnd.Next(-400, -200));
             Texture2D pipeUpTex = g.Content.Load<Texture2D>("images/PipeUp");
             Texture2D pipeDownTex = g.Content.Load<Texture2D>("images/PipeDown");
