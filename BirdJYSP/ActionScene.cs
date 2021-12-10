@@ -62,14 +62,20 @@ namespace BirdJYSP
 
             SpriteFont font = g.Content.Load<SpriteFont>("fonts/GameTitleFont");
 
-            Score score = new Score(game, spriteBatch/*, bird, pipe1, pipe2, enemy2, enemy3*/, font);
+            Score score = new Score(game, spriteBatch/*, bird, pipe1, pipe2, enemy2, enemy3*/, font, new Vector2(Shared.stage.X - 180, 10));
             this.Components.Add(score);
 
             CollisionManager cm = new CollisionManager(game, bird, bullet, pipe1, pipe2, enemy2, enemy3, score, losingSound, pointUpSound);
             this.Components.Add(cm);
             
+            
+            GameOver gameOver = new GameOver(game, spriteBatch, font);
+            gameOver.Visible = false;
+            //Make invisible, when player loses, make visibile
+            this.Components.Add(gameOver);
 
-
+            CollisionManager cm = new CollisionManager(game, bird, pipe1, pipe2, enemy2, enemy3, score, gameOver, losingSound, pointUpSound);
+            this.Components.Add(cm);
         }
 
         public override void Draw(GameTime gameTime)

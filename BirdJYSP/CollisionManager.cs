@@ -16,6 +16,7 @@ namespace BirdJYSP
         private Enemy enemy1;
         private Enemy enemy2;
         private Score score;
+        private GameOver gameOver;
         private SoundEffect losingSound, pointUpSound;
 
 
@@ -28,6 +29,7 @@ namespace BirdJYSP
             Enemy enemy1,
             Enemy enemy2,
             Score score,
+            GameOver gameOver,
            SoundEffect losingSound,
            SoundEffect pointUpSound) : base(game)
         {
@@ -38,6 +40,7 @@ namespace BirdJYSP
             this.enemy1 = enemy1;
             this.enemy2 = enemy2;
             this.score = score;
+            this.gameOver = gameOver;
             this.losingSound = losingSound;
             this.pointUpSound = pointUpSound;
 
@@ -59,6 +62,8 @@ namespace BirdJYSP
             enemy1.Visible = false;
             enemy2.Enabled = false;
             enemy2.Visible = false;
+            gameOver.Visible = true;
+            
         }
 
         public override void Update(GameTime gameTime)
