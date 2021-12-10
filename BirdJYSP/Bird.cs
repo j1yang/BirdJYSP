@@ -8,7 +8,7 @@ using System.Text;
 
 namespace BirdJYSP
 {
-    class Bird : DrawableGameComponent
+    public class Bird : DrawableGameComponent
     {
         private SpriteBatch spriteBatch;
         private Texture2D birdTex;
@@ -178,6 +178,14 @@ namespace BirdJYSP
             base.Update(gameTime);
         }
 
-        
+        public Rectangle getBirdBounds()
+        {
+            return new Rectangle((int)pos.X, (int)pos.Y, tex.Width, tex.Height);
+        }
+
+        public Rectangle getBulletBounds()
+        {
+            return new Rectangle((int)pos.X, (int)pos.Y, tex.Width, tex.Height);
+        }
     }
 }

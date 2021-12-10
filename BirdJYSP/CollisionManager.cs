@@ -8,30 +8,57 @@ namespace BirdJYSP
     public class CollisionManager : GameComponent
     {
 
-        private Ball ball;
-        private Bat bat;
-        private SoundEffect hitSound;
+        private Bird bird;
+        private Pipe pipe1;
+        private Pipe pipe2;
+        private Enemy enemy1;
+        private Enemy enemy2;
+
+        //private SoundEffect hitSound;
         public CollisionManager(Game game,
-            Ball ball,
-            Bat bat,
-            SoundEffect hitSound) : base(game)
+            Bird bird,
+            Pipe pipe1,
+            Pipe pipe2,
+            Enemy enemy1,
+            Enemy enemy2) : base(game)
         {
-            this.ball = ball;
-            this.bat = bat;
-            this.hitSound = hitSound;
+            this.bird = bird;
+            this.pipe1 = pipe1;
+            this.pipe2 = pipe2;
+            this.enemy1 = enemy1;
+            this.enemy2 = enemy2;
         }
 
         public override void Update(GameTime gameTime)
         {
-            Rectangle ballRect = ball.getBounds();
-            Rectangle batRect = bat.getBounds();
+            Rectangle birdRec = bird.getBirdBounds();
+            Rectangle bulletRec = bird.getBulletBounds();
+            Rectangle pipe1Rec = pipe1.getBounds();
+            Rectangle pipe2Rec = pipe2.getBounds();
+            Rectangle enemy1Rec = enemy1.getBounds();
+            Rectangle enemy2Rec = enemy2.getBounds();
 
-            if (ballRect.Intersects(batRect))
+            //palyer bird collides  with enemy bird
+            if (birdRec.Intersects(enemy1Rec) || birdRec.Intersects(enemy2Rec))
             {
                 //ball.Speed.Y = -ball.Speed.Y;
-                ball.Speed = new Vector2(ball.Speed.X, -Math.Abs(-ball.Speed.Y));
-                hitSound.Play();
+                //ball.Speed = new Vector2(ball.Speed.X, -Math.Abs(-ball.Speed.Y));
+                //hitSound.Play();
             }
+
+            //palyer bird collides  with pipe
+            if (birdRec.Intersects(pipe1Rec) || birdRec.Intersects(pipe2Rec))
+            {
+                
+            }
+
+            //bullet collides with enemy bird
+            if (birdRec.Intersects(pipe1Rec) || birdRec.Intersects(pipe2Rec))
+            {
+
+            }
+
+
 
             base.Update(gameTime);
         }
