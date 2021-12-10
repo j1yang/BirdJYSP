@@ -42,15 +42,15 @@ namespace BirdJYSP
             if (birdRec.Intersects(enemy1Rec) || birdRec.Intersects(enemy2Rec))
             {
                 
-                //bird.Enabled = false;
-                //bird.Visible = false;
+                bird.Enabled = false;
+                bird.Visible = false;
             }
 
             //palyer bird collides  with pipe
             if (birdRec.Intersects(pipe1Rec) || birdRec.Intersects(pipe2Rec))
             {
-                //bird.Enabled = false;
-                //bird.Visible = false;
+                bird.Enabled = false;
+                bird.Visible = false;
             }
 
             //bullet collides with enemy bird
