@@ -98,7 +98,6 @@ namespace BirdJYSP
                 //{
                 //    bulletYPos = 288;
                 //}
-                Debug.WriteLine(bulletYPos);
                 delayCounter = 0;
             }
 
