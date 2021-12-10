@@ -39,8 +39,8 @@ namespace BirdJYSP
             PipeDown pipe2 = new PipeDown(game, spriteBatch, pipeDownTex, pipe2pos);
             this.Components.Add(pipe2);
 
-            Vector2 p2pos = new Vector2((Shared.stage.X) + 200, (Shared.stage.Y) - rnd.Next(2, (int)Shared.stage.Y));
-            Vector2 p3pos = new Vector2((Shared.stage.X) + 600, (Shared.stage.Y) - rnd.Next(2, (int)Shared.stage.Y));
+            Vector2 p2pos = new Vector2((Shared.stage.X) + 400, (Shared.stage.Y) - rnd.Next(2, (int)Shared.stage.Y));
+            Vector2 p3pos = new Vector2((Shared.stage.X) + 1200, (Shared.stage.Y) - rnd.Next(2, (int)Shared.stage.Y));
             
 
             Enemy enemy2 = new Enemy(game, spriteBatch, birdTex, p2pos);
@@ -58,6 +58,7 @@ namespace BirdJYSP
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
         }
 
     }
