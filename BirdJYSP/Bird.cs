@@ -121,7 +121,7 @@ namespace BirdJYSP
                 //{
                 //    bulletYPos = 288;
                 //}
-                Debug.WriteLine(bulletYPos);
+                
                 delayCounter = 0;
             }
 
@@ -180,6 +180,7 @@ namespace BirdJYSP
 
         public Rectangle getBirdBounds()
         {
+            
             return new Rectangle((int)birdPos.X, (int)birdPos.Y, birdTex.Width, birdTex.Height);
             //tex x = 100
             //tex y = 80
