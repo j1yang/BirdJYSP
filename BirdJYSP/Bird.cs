@@ -185,7 +185,7 @@ namespace BirdJYSP
 
         public Rectangle getBulletBounds()
         {
-            return new Rectangle((int)pos.X, (int)pos.Y, tex.Width, tex.Height);
+            return new Rectangle((int)bulletPos.X, (int)bulletPos.Y, bulletTex.Width, bulletTex.Height);
         }
     }
 }
