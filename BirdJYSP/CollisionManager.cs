@@ -13,6 +13,9 @@ namespace BirdJYSP
         private PipeDown pipe2;
         private Enemy enemy1;
         private Enemy enemy2;
+        private Score score;
+
+
 
         //private SoundEffect hitSound;
         public CollisionManager(Game game,
@@ -20,13 +23,15 @@ namespace BirdJYSP
             Pipe pipe1,
             PipeDown pipe2,
             Enemy enemy1,
-            Enemy enemy2) : base(game)
+            Enemy enemy2,
+            Score score) : base(game)
         {
             this.bird = bird;
             this.pipe1 = pipe1;
             this.pipe2 = pipe2;
             this.enemy1 = enemy1;
             this.enemy2 = enemy2;
+            this.score = score;
         }
 
         public override void Update(GameTime gameTime)

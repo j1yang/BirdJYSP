@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BirdJYSP
 {
-    class Score : GameComponent
+    public class Score : GameComponent
     {
 
         private Bird bird;
@@ -16,7 +16,7 @@ namespace BirdJYSP
         private PipeDown pipe2;
         private Enemy enemy1;
         private Enemy enemy2;
-        public int currentScore = 0;
+        private int currentScore = 0;
         //private SoundEffect hitSound;
         public Score(Game game,
             Bird bird,
@@ -32,6 +32,8 @@ namespace BirdJYSP
             this.enemy2 = enemy2;
         }
 
+        public int CurrentScore { get => currentScore; set => currentScore = value; }
+
         public override void Update(GameTime gameTime)
         {
             Rectangle birdRec = bird.getBirdBounds();
@@ -41,34 +43,34 @@ namespace BirdJYSP
             Rectangle enemy1Rec = enemy1.getBounds();
             Rectangle enemy2Rec = enemy2.getBounds();
 
-            
+
 
             //bullet collides with enemy bird
             if (bulletRec.Intersects(enemy1Rec) && enemy1.Visible)
             {
-                currentScore++;
+                CurrentScore++;
             }
             //bullet collides with enemy bird
             if (bulletRec.Intersects(enemy2Rec) && enemy2.Visible)
             {
-                currentScore++;
+                CurrentScore++;
             }
 
 
 
-                 
+
             if (pipe1Rec.X <= 0)
             {
-                currentScore++;
+                CurrentScore++;
             }
             if (pipe2Rec.X <= 0)
             {
-                currentScore++;
+                CurrentScore++;
             }
 
 
 
-            Debug.WriteLine(currentScore);
+            Debug.WriteLine(CurrentScore);
 
             base.Update(gameTime);
         }
