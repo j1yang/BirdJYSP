@@ -24,7 +24,7 @@ namespace BirdJYSP
         private static Random rnd = new Random();
         //width is 800
         //height is 480
-        private Vector2 startLocation = new Vector2((Shared.stage.X), (Shared.stage.Y) - rnd.Next(10, 470));
+        private Vector2 startLocation = new Vector2((Shared.stage.X) + 800, (Shared.stage.Y) - rnd.Next(10, 470));
 
         //For the animation of enemy Bird
         private List<Rectangle> frames;
