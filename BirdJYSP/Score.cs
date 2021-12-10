@@ -25,7 +25,7 @@ namespace BirdJYSP
             this.spriteBatch = spriteBatch;
 
             this.font = font;
-            pos = new Vector2(Shared.stage.X / 2, Shared.stage.Y / 2);
+            pos = new Vector2(Shared.stage.X / 20, Shared.stage.Y / 20);
 
         }
 
