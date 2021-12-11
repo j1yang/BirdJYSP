@@ -11,6 +11,14 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <COMReference Include="{ea544a21-c82d-11d1-a3e4-00a0c90aea82}">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>0</VersionMinor>
+      <VersionMajor>6</VersionMajor>
+      <Guid>ea544a21-c82d-11d1-a3e4-00a0c90aea82</Guid>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
     <TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />
   </ItemGroup>
   <ItemGroup>

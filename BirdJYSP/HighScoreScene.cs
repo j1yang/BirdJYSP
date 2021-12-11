@@ -14,6 +14,11 @@ namespace BirdJYSP
         {
             Game1 g = (Game1)game;
             this.spriteBatch = g._spriteBatch;
+
+            SpriteFont font = g.Content.Load<SpriteFont>("fonts/GameTitleFont");
+
+            HighScore highSCore = new HighScore(game, spriteBatch, font);
+            this.Components.Add(highSCore);
         }
     }
 }
