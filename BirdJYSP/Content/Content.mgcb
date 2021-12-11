@@ -202,6 +202,18 @@
 /processorParam:TextureFormat=Color
 /build:images/test.jpg
 
+#begin sounds/gameBackgroundSound.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:sounds/gameBackgroundSound.mp3
+
+#begin sounds/gameBackgroundSound.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:sounds/gameBackgroundSound.mp3
+
 #begin sounds/GetPoint.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -225,4 +237,10 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:sounds/losing.wav
+
+#begin sounds/mainScreenSound.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:sounds/mainScreenSound.mp3
 

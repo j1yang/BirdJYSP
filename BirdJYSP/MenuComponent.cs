@@ -77,6 +77,7 @@ namespace BirdJYSP
             }
             oldState = ks;
 
+
             base.Update(gameTime);
         }
     }

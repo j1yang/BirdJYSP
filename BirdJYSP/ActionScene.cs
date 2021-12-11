@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace BirdJYSP
 {
@@ -15,6 +16,7 @@ namespace BirdJYSP
         public Pipe pipe1;
         public PipeDown pipe2;
         public Bird bird;
+        private Song backgroundMusic;
         public ActionScene(Game game) : base(game)
         {
             Game1 g = (Game1)game;
@@ -23,6 +25,13 @@ namespace BirdJYSP
             SoundEffect pointUpSound = g.Content.Load<SoundEffect>("sounds/GetPoint");
             SoundEffect gunSound = g.Content.Load<SoundEffect>("sounds/gunSound2");
             SoundEffect losingSound = g.Content.Load<SoundEffect>("sounds/losing");
+
+            //background Music Added
+            backgroundMusic = g.Content.Load<Song>("sounds/gameBackgroundSound");
+            MediaPlayer.Play(backgroundMusic);
+            MediaPlayer.Volume = 0.3f;
+            MediaPlayer.IsRepeating = true;
+
             //-------------------------------------------------------------------------------
 
             this.spriteBatch = g._spriteBatch;
@@ -81,9 +90,7 @@ namespace BirdJYSP
 
         public override void Update(GameTime gameTime)
         {
-            
             base.Update(gameTime);
-
         }
 
     }
