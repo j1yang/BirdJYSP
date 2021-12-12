@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -17,7 +18,7 @@ namespace BirdJYSP
         private SpriteFont font;
         private Vector2 pos;
         private string[] savedScores = new string[10];
-        
+        private string[] scores = new string[100];
 
 
         //private SoundEffect hitSound;
@@ -62,15 +63,23 @@ namespace BirdJYSP
             {
                 File.Create("SavedScoreList.txt");
             }
-            int i = 1;
+            int i = 0;
             using (StreamReader reader = new StreamReader("SavedScoreList.txt"))
             {
+                while (!reader.EndOfStream)
+                {
+                    scores[i] = reader.ReadLine();
+                }
+                List<string> list = scores.ToList();
+                list.Sort();
+
+                i = 0;
                 while (i < 10)
                 {
-                    savedScores[i] = reader.ReadLine();
+                    savedScores[i] = list[i];
                     i++;
                 }
-                i = 1;
+                i = 0;
             }
             
         }

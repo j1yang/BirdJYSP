@@ -80,7 +80,7 @@ namespace BirdJYSP
             //gameOver.Visible = true;
 
             #region Save score in descending order
-            if (InputBox("Save Score", "New document name:", ref playerName) == DialogResult.OK)
+            if (InputBox("Save Score", "Player Name:", ref playerName) == DialogResult.OK)
             {
                 isScoreUpdated = true;
                 finalScore = score.CurrentScore;
@@ -88,69 +88,69 @@ namespace BirdJYSP
                 {
                     File.Create("SavedScoreList.txt");
                 }
-                using (StreamReader reader = new StreamReader("SavedScoreList.txt"))
-                {
-                    #region Trial 1
-                    //int i = 0;
-                    ////get length of file
-                    //while (!reader.EndOfStream)
-                    //{
-                    //    reader.ReadLine();
-                    //    i++;
-                    //}
-                    //string[] savedScores = new string[i];
-                    //bool endRead = false;
-                    //bool recordSaved = false;
-                    //bool oddLine = true;
-                    ////records number of iterations gone trhough
-                    //int j = 0;
-                    ////records placement of the new record
-                    //int k = 0;
-                    //while (!reader.EndOfStream || endRead)
-                    //{
-                    //    currentLine = reader.ReadLine();
-                    //    savedScores[j] = currentLine;
-                    //    if (oddLine)
-                    //    {
-                    //        if (int.Parse(currentLine) < finalScore)
-                    //        {
-                    //            k = j;
-                    //        }
-                    //        oddLine = false;
+                //using (StreamReader reader = new StreamReader("SavedScoreList.txt"))
+                //{
+                //    #region Trial 1
+                //    //int i = 0;
+                //    ////get length of file
+                //    //while (!reader.EndOfStream)
+                //    //{
+                //    //    reader.ReadLine();
+                //    //    i++;
+                //    //}
+                //    //string[] savedScores = new string[i];
+                //    //bool endRead = false;
+                //    //bool recordSaved = false;
+                //    //bool oddLine = true;
+                //    ////records number of iterations gone trhough
+                //    //int j = 0;
+                //    ////records placement of the new record
+                //    //int k = 0;
+                //    //while (!reader.EndOfStream || endRead)
+                //    //{
+                //    //    currentLine = reader.ReadLine();
+                //    //    savedScores[j] = currentLine;
+                //    //    if (oddLine)
+                //    //    {
+                //    //        if (int.Parse(currentLine) < finalScore)
+                //    //        {
+                //    //            k = j;
+                //    //        }
+                //    //        oddLine = false;
 
-                    //    }
-                    //    else
-                    //    {
-                    //        oddLine = true;
-                    //    }
-                    //    j++;
-                    //}
-                    ////Now, savedRecords will be array A
-                    ////Next, create an array that is the same size of Array A + 2 (for the new entries)
-                    //string[] updatedSavedScores = new string[i + 2];
-                    //for (int m = 0; m < k; m++)
-                    //{
-                    //    updatedSavedScores[m] = savedScores[m];
-                    //}
-                    //updatedSavedScores[k] = finalScore.ToString();
-                    //updatedSavedScores[k + 1] = playerName;
-                    //j = i - k;
-                    //for (int n = 0; n < j; n++)
-                    //{
-                    //    updatedSavedScores[k + 1 + n] = finalScore.ToString();
-                    //}
-                    //list = updatedSavedScores.ToList();
-                    #endregion
-                    while(!reader.EndOfStream)
-                    {
-                        currentLine = reader.ReadLine();
-                        string[] fields = currentLine.Split(" - ");
-                        savedScore = int.Parse(fields[0]);
-                        savedName = fields[1];
-                        list.Add((savedScore, savedName));
-                    }
+                //    //    }
+                //    //    else
+                //    //    {
+                //    //        oddLine = true;
+                //    //    }
+                //    //    j++;
+                //    //}
+                //    ////Now, savedRecords will be array A
+                //    ////Next, create an array that is the same size of Array A + 2 (for the new entries)
+                //    //string[] updatedSavedScores = new string[i + 2];
+                //    //for (int m = 0; m < k; m++)
+                //    //{
+                //    //    updatedSavedScores[m] = savedScores[m];
+                //    //}
+                //    //updatedSavedScores[k] = finalScore.ToString();
+                //    //updatedSavedScores[k + 1] = playerName;
+                //    //j = i - k;
+                //    //for (int n = 0; n < j; n++)
+                //    //{
+                //    //    updatedSavedScores[k + 1 + n] = finalScore.ToString();
+                //    //}
+                //    //list = updatedSavedScores.ToList();
+                //    #endregion
+                //    while(!reader.EndOfStream)
+                //    {
+                //        currentLine = reader.ReadLine();
+                //        string[] fields = currentLine.Split(" - ");
+                //        savedScore = int.Parse(fields[0]);
+                //        savedName = fields[1];
+                //        list.Add((savedScore, savedName));
+                //    }
                     
-                }
+                //}
 
                 using (StreamWriter writer = new StreamWriter("SavedScoreList.txt", append: true))
                 {
@@ -159,7 +159,7 @@ namespace BirdJYSP
                     //    writer.WriteLine(item);
                     //}
                     //First line will print player name, second will print Score
-
+                    writer.WriteLine(finalScore + " - " + playerName);
                 }
             }
             #endregion
@@ -167,42 +167,42 @@ namespace BirdJYSP
         }
         public static DialogResult InputBox(string title, string promptText, ref string value)
         {
-            
+            //Instantiating object for form
             Form form = new Form();
             Label label = new Label();
             TextBox textBox = new TextBox();
             Button buttonOk = new Button();
             Button buttonCancel = new Button();
-
             form.Text = title;
             label.Text = promptText;
             textBox.Text = value;
-
+            //Labeling/creating buttons for form
             buttonOk.Text = "OK";
             buttonCancel.Text = "Cancel";
             buttonOk.DialogResult = DialogResult.OK;
             buttonCancel.DialogResult = DialogResult.Cancel;
-
-            label.SetBounds(9, 20, 372, 13);
+            //Setting bounds of the form
+            label.SetBounds(10, 15, 372, 13);
             textBox.SetBounds(12, 36, 372, 20);
             buttonOk.SetBounds(228, 72, 75, 23);
             buttonCancel.SetBounds(309, 72, 75, 23);
-
+            //Layout of form
             label.AutoSize = true;
             textBox.Anchor = textBox.Anchor | AnchorStyles.Right;
             buttonOk.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             buttonCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-
-            form.ClientSize = new System.Drawing.Size(396, 107);
+            //Setting form
+            form.ClientSize = new System.Drawing.Size(390, 100);
             form.Controls.AddRange(new Control[] { label, textBox, buttonOk, buttonCancel });
             form.ClientSize = new System.Drawing.Size(Math.Max(300, label.Right + 10), form.ClientSize.Height);
             form.FormBorderStyle = FormBorderStyle.FixedDialog;
             form.StartPosition = FormStartPosition.CenterScreen;
+            //Setting form
             form.MinimizeBox = false;
             form.MaximizeBox = false;
             form.AcceptButton = buttonOk;
             form.CancelButton = buttonCancel;
-
+            //Send result
             DialogResult dialogResult = form.ShowDialog();
             value = textBox.Text;
             return dialogResult;
