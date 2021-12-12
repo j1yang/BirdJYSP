@@ -18,7 +18,7 @@ namespace BirdJYSP
             SpriteFont font = g.Content.Load<SpriteFont>("fonts/GameTitleFont");
             SpriteFont scoreFont = g.Content.Load<SpriteFont>("fonts/scoreFont");
 
-            highScore = new HighScore(game, spriteBatch, font, scoreFont);
+            highScore = new HighScore(g, spriteBatch, font, scoreFont);
             this.Components.Add(highScore);
         }
 
