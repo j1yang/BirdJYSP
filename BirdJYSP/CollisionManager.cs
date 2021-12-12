@@ -83,8 +83,7 @@ namespace BirdJYSP
             if (InputBox("Save Score", "New document name:", ref playerName) == DialogResult.OK)
             {
                 isScoreUpdated = true;
-                finalScore = playerName;
-                finalScore += " - " + score.CurrentScore;
+                finalScore = score.CurrentScore;
                 if (!File.Exists("SavedScoreList.txt"))
                 {
                     File.Create("SavedScoreList.txt");
