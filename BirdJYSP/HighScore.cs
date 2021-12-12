@@ -19,6 +19,7 @@ namespace BirdJYSP
         private Vector2 pos;
         private string[] savedScores = new string[10];
         private string[] scores = new string[100];
+        private List<string> scoreList = new List<string>();
 
 
         //private SoundEffect hitSound;
@@ -40,12 +41,25 @@ namespace BirdJYSP
             spriteBatch.DrawString(font, "HighScores", new Vector2(300, 20), Color.Red);
             spriteBatch.End();
             GenerateList();
-            for (int i = 0; i < 10; i++)
+            if (scoreList.Count() >=10)
             {
-                score = "#" + (i + 1) + ": " + savedScores[i];
-                spriteBatch.Begin();
-                spriteBatch.DrawString(font, score, new Vector2(100, (100 + (i*30))), Color.Black);
-                spriteBatch.End();
+                for (int i = 0; i < 10; i++)
+                {
+                    score = "#" + (i + 1) + ": " + scoreList[i];
+                    spriteBatch.Begin();
+                    spriteBatch.DrawString(font, score, new Vector2(100, (100 + (i * 30))), Color.Black);
+                    spriteBatch.End();
+                }
+            }
+            else
+            {
+                for (int i = 0; i < scoreList.Count(); i++)
+                {
+                    score = "#" + (i + 1) + ": " + scoreList[i];
+                    spriteBatch.Begin();
+                    spriteBatch.DrawString(font, score, new Vector2(100, (100 + (i * 30))), Color.Black);
+                    spriteBatch.End();
+                }
             }
 
             base.Draw(gameTime);
@@ -59,7 +73,30 @@ namespace BirdJYSP
 
         public void GenerateList()
         {
-            if(!File.Exists("SavedScoreList.txt"))
+            //if(!File.Exists("SavedScoreList.txt"))
+            //{
+            //    File.Create("SavedScoreList.txt");
+            //}
+            //int i = 0;
+            //using (StreamReader reader = new StreamReader("SavedScoreList.txt"))
+            //{
+            //    while (!reader.EndOfStream)
+            //    {
+            //        scores[i] = reader.ReadLine();
+            //    }
+            //    List<string> list = scores.ToList();
+            //    list.Sort();
+
+            //    i = 0;
+            //    while (i < 10)
+            //    {
+            //        savedScores[i] = list[i];
+            //        i++;
+            //    }
+            //    i = 0;
+            //}
+
+            if (!File.Exists("SavedScoreList.txt"))
             {
                 File.Create("SavedScoreList.txt");
             }
@@ -68,21 +105,14 @@ namespace BirdJYSP
             {
                 while (!reader.EndOfStream)
                 {
-                    scores[i] = reader.ReadLine();
+                    string line = reader.ReadLine();
+                    scoreList.Add(line);
                 }
-                List<string> list = scores.ToList();
-                list.Sort();
-
-                i = 0;
-                while (i < 10)
-                {
-                    savedScores[i] = list[i];
-                    i++;
-                }
-                i = 0;
+                scoreList.Sort();
+                scoreList.Reverse();
             }
-            
-        }
+
+    }
 
 
     }

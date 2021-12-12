@@ -88,69 +88,7 @@ namespace BirdJYSP
                 {
                     File.Create("SavedScoreList.txt");
                 }
-                //using (StreamReader reader = new StreamReader("SavedScoreList.txt"))
-                //{
-                //    #region Trial 1
-                //    //int i = 0;
-                //    ////get length of file
-                //    //while (!reader.EndOfStream)
-                //    //{
-                //    //    reader.ReadLine();
-                //    //    i++;
-                //    //}
-                //    //string[] savedScores = new string[i];
-                //    //bool endRead = false;
-                //    //bool recordSaved = false;
-                //    //bool oddLine = true;
-                //    ////records number of iterations gone trhough
-                //    //int j = 0;
-                //    ////records placement of the new record
-                //    //int k = 0;
-                //    //while (!reader.EndOfStream || endRead)
-                //    //{
-                //    //    currentLine = reader.ReadLine();
-                //    //    savedScores[j] = currentLine;
-                //    //    if (oddLine)
-                //    //    {
-                //    //        if (int.Parse(currentLine) < finalScore)
-                //    //        {
-                //    //            k = j;
-                //    //        }
-                //    //        oddLine = false;
-
-                //    //    }
-                //    //    else
-                //    //    {
-                //    //        oddLine = true;
-                //    //    }
-                //    //    j++;
-                //    //}
-                //    ////Now, savedRecords will be array A
-                //    ////Next, create an array that is the same size of Array A + 2 (for the new entries)
-                //    //string[] updatedSavedScores = new string[i + 2];
-                //    //for (int m = 0; m < k; m++)
-                //    //{
-                //    //    updatedSavedScores[m] = savedScores[m];
-                //    //}
-                //    //updatedSavedScores[k] = finalScore.ToString();
-                //    //updatedSavedScores[k + 1] = playerName;
-                //    //j = i - k;
-                //    //for (int n = 0; n < j; n++)
-                //    //{
-                //    //    updatedSavedScores[k + 1 + n] = finalScore.ToString();
-                //    //}
-                //    //list = updatedSavedScores.ToList();
-                //    #endregion
-                //    while(!reader.EndOfStream)
-                //    {
-                //        currentLine = reader.ReadLine();
-                //        string[] fields = currentLine.Split(" - ");
-                //        savedScore = int.Parse(fields[0]);
-                //        savedName = fields[1];
-                //        list.Add((savedScore, savedName));
-                //    }
-                    
-                //}
+               
 
                 using (StreamWriter writer = new StreamWriter("SavedScoreList.txt", append: true))
                 {
