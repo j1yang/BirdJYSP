@@ -36,7 +36,7 @@ namespace BirdJYSP
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
-            spriteBatch.DrawString(font, score, new Vector2(300, 20), Color.Red);
+            spriteBatch.DrawString(font, "HighScores", new Vector2(300, 20), Color.Red);
             spriteBatch.End();
             GenerateList();
             for (int i = 0; i < 10; i++)
