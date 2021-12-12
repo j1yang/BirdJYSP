@@ -104,6 +104,9 @@ namespace BirdJYSP
                 }
                 else if (selectedIndex == 1 && ks.IsKeyDown(Keys.Enter))
                 {
+                    highScoreScene = new HighScoreScene(this);
+                    this.Components.Add(highScoreScene);
+
                     startScene.hide();
                     highScoreScene.show();
                 }

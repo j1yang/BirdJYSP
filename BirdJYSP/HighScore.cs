@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BirdJYSP
 {
-    class HighScore : DrawableGameComponent
+    public class HighScore : DrawableGameComponent
     {
         private SpriteBatch spriteBatch;
 
@@ -33,7 +33,6 @@ namespace BirdJYSP
             this.font = font;
             this.scoreFont = scoreFont;
             this.score = GenerateList();
-
         }
 
         //public int CurrentScore { get => currentScore; set => currentScore = value; }
