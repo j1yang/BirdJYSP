@@ -13,7 +13,7 @@ namespace BirdJYSP
         private SpriteBatch spriteBatch;
 
         private int currentScore = 0;
-        private string score = "Score: ";
+        public string score = "Score: ";
         private SpriteFont font;
         private Vector2 pos;
 

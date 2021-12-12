@@ -77,7 +77,7 @@ namespace BirdJYSP
             this.Components.Add(score);
 
             SpriteFont regularFont = g.Content.Load<SpriteFont>("fonts/regF");
-            GameOver gameOver = new GameOver(game, spriteBatch, font, regularFont);
+            GameOver gameOver = new GameOver(game, spriteBatch, font, regularFont,score);
             gameOver.Visible = false;
             //Make invisible, when player loses, make visibile
             this.Components.Add(gameOver);
