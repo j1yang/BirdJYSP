@@ -14,13 +14,13 @@ namespace BirdJYSP
         private SpriteBatch spriteBatch;
 
         private int currentScore = 0;
-        private string score = "Score: \n";
+        public string score = "Score: \n";
         private SpriteFont font;
         private Vector2 pos;
         private string[] savedScores = new string[10];
         private string[] scores = new string[100];
         private List<string> scoreList = new List<string>();
-
+        private List<Tuple<int, string>> list = new List<Tuple<int, string>>();
 
         //private SoundEffect hitSound;
         public HighScore(Game game,
@@ -43,73 +43,53 @@ namespace BirdJYSP
             spriteBatch.End();
 
             spriteBatch.Begin();
-            spriteBatch.DrawString(font, score, new Vector2(100, 80), Color.Black);
+            spriteBatch.DrawString(font, score, new Vector2(100, 60), Color.Black);
             spriteBatch.End();
             base.Draw(gameTime);
         }
 
         public override void Update(GameTime gameTime)
         {
-            
+            score = GenerateList();
             base.Update(gameTime);
         }
 
         public string GenerateList()
         {
-            //if(!File.Exists("SavedScoreList.txt"))
-            //{
-            //    File.Create("SavedScoreList.txt");
-            //}
-            //int i = 0;
-            //using (StreamReader reader = new StreamReader("SavedScoreList.txt"))
-            //{
-            //    while (!reader.EndOfStream)
-            //    {
-            //        scores[i] = reader.ReadLine();
-            //    }
-            //    List<string> list = scores.ToList();
-            //    list.Sort();
-
-            //    i = 0;
-            //    while (i < 10)
-            //    {
-            //        savedScores[i] = list[i];
-            //        i++;
-            //    }
-            //    i = 0;
-            //}
 
             if (!File.Exists("SavedScoreList.txt"))
             {
                 File.Create("SavedScoreList.txt");
             }
 
+            int index = 0;
             using (StreamReader reader = new StreamReader("SavedScoreList.txt"))
             {
                 while (!reader.EndOfStream)
                 {
                     string line = reader.ReadLine();
+                    string[] tempLine = line.Split('-');
                     scoreList.Add(line);
+                    list.Add(new Tuple<int, string>(int.Parse(tempLine[0].Trim(' ')), tempLine[1].Trim(' ')));
                 }
             }
 
-            scoreList.Sort();
-            scoreList.Reverse();
+            list.Sort((x, y) => y.Item1.CompareTo(x.Item1));
 
-            if (scoreList.Count() >= 10)
+            if (list.Count() >= 10)
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    string line = "#" + (i + 1) + ": " + scoreList[i] + "\n";
+                    string line = "#" + (i + 1) + ": " + list[i].Item1 + " - " + list[i].Item2 + "\n";
                     score += line;
                 }
-                
+
             }
             else
             {
-                for (int i = 0; i < scoreList.Count(); i++)
+                for (int i = 0; i < list.Count(); i++)
                 {
-                    string line = "#" + (i + 1) + ": " + scoreList[i] + "\n";
+                    string line = "#" + (i + 1) + ": " + list[i].Item1 + " - " + list[i].Item2 + "\n";
                     score += line;
 
                 }
