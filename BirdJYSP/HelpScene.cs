@@ -16,7 +16,7 @@ namespace BirdJYSP
         {
             Game1 g = (Game1)game;
             this.spriteBatch = g._spriteBatch;
-            helpTex = g.Content.Load<Texture2D>("images/HELP2");
+            helpTex = g.Content.Load<Texture2D>("images/HELP_Image");
         }
 
         public override void Draw(GameTime gameTime)
