@@ -13,7 +13,7 @@ namespace BirdJYSP
 
         private int currentScore = 0;
         private string gameOver = "Game Over";
-        private string direction = "Press Space to restart the game.\nESC or Enter key to go menu.";
+        private string direction = "Press Space bar to restart the game.\nESC key to go menu.";
         private SpriteFont font, directionFont;
         private Vector2 pos1, pos2;
 
