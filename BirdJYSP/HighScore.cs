@@ -20,7 +20,6 @@ namespace BirdJYSP
         private string[] savedScores = new string[10];
         private string[] scores = new string[100];
         private List<string> scoreList = new List<string>();
-        private List<string> sortedScoreList = new List<string>();
 
 
         //private SoundEffect hitSound;
@@ -90,9 +89,7 @@ namespace BirdJYSP
                 while (!reader.EndOfStream)
                 {
                     string line = reader.ReadLine();
-                    string [] tempScore = line.Split(' ');
-                    scoreList.Add(/*int.Parse(tempScore[0])*/line);
-                    sortedScoreList.Add(line);
+                    scoreList.Add(line);
                 }
             }
 
