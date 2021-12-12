@@ -116,25 +116,16 @@ namespace BirdJYSP
             {
                 //if space bar clicked then bird go up
                 BirdPos += birdSpeed;
-                
             }
 
             //bird go under bottom border
-            if (BirdPos.Y >= Shared.stage.Y)
-            {
-                var instance = losingSound.CreateInstance();
-                instance.Volume = 0.8f;
-                instance.Play();
-
-                BirdPos += new Vector2(0, -80);
-                if (BirdPos.Y == Shared.stage.Y-BirdTex.Height*2)
-                {
-                    this.Enabled = false;
-                    this.Visible = false;
-
-                    this.BirdPos = new Vector2(-10000, -10000);
-                }
-            }
+            //if (BirdPos.Y >= Shared.stage.Y)
+            //{
+            //    if (BirdPos.Y == Shared.stage.Y - BirdTex.Height * 2)
+            //    {
+            //        this.BirdPos = new Vector2(-10000, -10000);
+            //    }
+            //}
 
             //bird go over top border
             if (BirdPos.Y <= 0)

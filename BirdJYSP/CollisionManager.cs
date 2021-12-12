@@ -65,6 +65,8 @@ namespace BirdJYSP
             instance.Play();
             bird.Enabled = false;
             bird.Visible = false;
+            bird.BirdPos = bird.BirdPos = new Vector2(-10000, -10000);
+
             bullet.Enabled = false;
             bullet.Visible = false;
             pipe1.Enabled = false;
@@ -155,6 +157,10 @@ namespace BirdJYSP
             Rectangle enemy1Rec = enemy1.getBounds();
             Rectangle enemy2Rec = enemy2.getBounds();
 
+            if (birdRec.Bottom >= Shared.stage.Y)
+            {
+                GenerateGameOver();
+            }
             //palyer bird collides  with enemy bird
             if (birdRec.Intersects(enemy1Rec) && enemy1.Visible || birdRec.Intersects(enemy2Rec) && enemy2.Visible)
             {
