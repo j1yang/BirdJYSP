@@ -14,8 +14,8 @@ namespace BirdJYSP
         private SpriteBatch spriteBatch;
 
         private int currentScore = 0;
-        public string score = "Score: \n";
-        private SpriteFont font;
+        public string score = "";
+        private SpriteFont font, scoreFont;
         private Vector2 pos;
         private string[] savedScores = new string[10];
         private string[] scores = new string[100];
@@ -25,11 +25,13 @@ namespace BirdJYSP
         //private SoundEffect hitSound;
         public HighScore(Game game,
             SpriteBatch spriteBatch,
-            SpriteFont font) : base(game)
+            SpriteFont font,
+            SpriteFont scoreFont) : base(game)
         {
             this.spriteBatch = spriteBatch;
 
             this.font = font;
+            this.scoreFont = scoreFont;
             this.score = GenerateList();
 
         }
@@ -43,7 +45,7 @@ namespace BirdJYSP
             spriteBatch.End();
 
             spriteBatch.Begin();
-            spriteBatch.DrawString(font, score, new Vector2(100, 60), Color.Black);
+            spriteBatch.DrawString(scoreFont, score, new Vector2(100, 95), Color.Black);
             spriteBatch.End();
             base.Draw(gameTime);
         }
