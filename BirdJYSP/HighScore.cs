@@ -14,12 +14,13 @@ namespace BirdJYSP
         private SpriteBatch spriteBatch;
 
         private int currentScore = 0;
-        private string score = "Score: ";
+        private string score = "Score: \n";
         private SpriteFont font;
         private Vector2 pos;
         private string[] savedScores = new string[10];
         private string[] scores = new string[100];
         private List<string> scoreList = new List<string>();
+        private List<string> sortedScoreList = new List<string>();
 
 
         //private SoundEffect hitSound;
@@ -30,6 +31,7 @@ namespace BirdJYSP
             this.spriteBatch = spriteBatch;
 
             this.font = font;
+            this.score = GenerateList();
 
         }
 
@@ -40,28 +42,10 @@ namespace BirdJYSP
             spriteBatch.Begin();
             spriteBatch.DrawString(font, "HighScores", new Vector2(300, 20), Color.Red);
             spriteBatch.End();
-            GenerateList();
-            if (scoreList.Count() >=10)
-            {
-                for (int i = 0; i < 10; i++)
-                {
-                    score = "#" + (i + 1) + ": " + scoreList[i];
-                    spriteBatch.Begin();
-                    spriteBatch.DrawString(font, score, new Vector2(100, (100 + (i * 30))), Color.Black);
-                    spriteBatch.End();
-                }
-            }
-            else
-            {
-                for (int i = 0; i < scoreList.Count(); i++)
-                {
-                    score = "#" + (i + 1) + ": " + scoreList[i];
-                    spriteBatch.Begin();
-                    spriteBatch.DrawString(font, score, new Vector2(100, (100 + (i * 30))), Color.Black);
-                    spriteBatch.End();
-                }
-            }
 
+            spriteBatch.Begin();
+            spriteBatch.DrawString(font, score, new Vector2(100, 80), Color.Black);
+            spriteBatch.End();
             base.Draw(gameTime);
         }
 
@@ -71,7 +55,7 @@ namespace BirdJYSP
             base.Update(gameTime);
         }
 
-        public void GenerateList()
+        public string GenerateList()
         {
             //if(!File.Exists("SavedScoreList.txt"))
             //{
@@ -100,19 +84,42 @@ namespace BirdJYSP
             {
                 File.Create("SavedScoreList.txt");
             }
-            int i = 0;
+
             using (StreamReader reader = new StreamReader("SavedScoreList.txt"))
             {
                 while (!reader.EndOfStream)
                 {
                     string line = reader.ReadLine();
-                    scoreList.Add(line);
+                    string [] tempScore = line.Split(' ');
+                    scoreList.Add(/*int.Parse(tempScore[0])*/line);
+                    sortedScoreList.Add(line);
                 }
-                scoreList.Sort();
-                scoreList.Reverse();
             }
 
-    }
+            scoreList.Sort();
+            scoreList.Reverse();
+
+            if (scoreList.Count() >= 10)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    string line = "#" + (i + 1) + ": " + scoreList[i] + "\n";
+                    score += line;
+                }
+                
+            }
+            else
+            {
+                for (int i = 0; i < scoreList.Count(); i++)
+                {
+                    string line = "#" + (i + 1) + ": " + scoreList[i] + "\n";
+                    score += line;
+
+                }
+            }
+
+            return score;
+        }
 
 
     }
