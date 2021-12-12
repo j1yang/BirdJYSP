@@ -24,8 +24,8 @@ namespace BirdJYSP
 
         public override void Update(GameTime gameTime)
         {
-            highScore.score = highScore.GenerateList();
-            base.Update(gameTime);
+            //highScore.score = highScore.GenerateList();
+            //base.Update(gameTime);
         }
     }
 }
