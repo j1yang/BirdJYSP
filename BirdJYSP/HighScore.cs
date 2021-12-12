@@ -57,13 +57,12 @@ namespace BirdJYSP
 
         public string GenerateList()
         {
+            
 
             if (!File.Exists("SavedScoreList.txt"))
             {
                 File.Create("SavedScoreList.txt");
             }
-
-            int index = 0;
             using (StreamReader reader = new StreamReader("SavedScoreList.txt"))
             {
                 while (!reader.EndOfStream)
@@ -73,6 +72,7 @@ namespace BirdJYSP
                     scoreList.Add(line);
                     list.Add(new Tuple<int, string>(int.Parse(tempLine[0].Trim(' ')), tempLine[1].Trim(' ')));
                 }
+                
             }
 
             list.Sort((x, y) => y.Item1.CompareTo(x.Item1));
