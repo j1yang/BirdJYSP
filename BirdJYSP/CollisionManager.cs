@@ -100,6 +100,7 @@ namespace BirdJYSP
                     //}
                     //First line will print player name, second will print Score
                     writer.WriteLine(finalScore + " - " + playerName);
+                    writer.Close();
                 }
             }
             #endregion
