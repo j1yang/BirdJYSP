@@ -104,7 +104,7 @@ namespace BirdJYSP
 
         public Rectangle getBounds()
         {
-            return new Rectangle((int)Position.X, (int)Position.Y, tex.Width, tex.Height);
+            return new Rectangle((int)Position.X, (int)Position.Y, 94, 72);
         }
 
     }

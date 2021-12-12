@@ -139,7 +139,7 @@ namespace BirdJYSP
         public Rectangle getBounds()
         {
             
-            return new Rectangle((int)BirdPos.X, (int)BirdPos.Y, 100, 80);
+            return new Rectangle((int)BirdPos.X, (int)BirdPos.Y, 90, 70);
             //tex x = 100
             //tex y = 80
 
