@@ -17,6 +17,7 @@ namespace BirdJYSP
         public PipeDown pipe2;
         public Bird bird;
         private Song backgroundMusic;
+        public CollisionManager cm;
         public ActionScene(Game game) : base(game)
         {
             Game1 g = (Game1)game;
@@ -53,6 +54,7 @@ namespace BirdJYSP
             Vector2 pipe1pos = new Vector2((Shared.stage.X), (Shared.stage.Y) - rnd.Next(100, 380));
             Vector2 pipe2pos = new Vector2((Shared.stage.X) + 800, rnd.Next(-400, -200));
             Texture2D pipeUpTex = g.Content.Load<Texture2D>("images/PipeUp");
+
             Texture2D pipeDownTex = g.Content.Load<Texture2D>("images/PipeDown");
             pipe1 = new Pipe(game, spriteBatch, pipeUpTex, pipe1pos);
             this.Components.Add(pipe1);
@@ -73,13 +75,14 @@ namespace BirdJYSP
 
             Score score = new Score(game, spriteBatch/*, bird, pipe1, pipe2, enemy2, enemy3*/, font, new Vector2(Shared.stage.X - 180, 10));
             this.Components.Add(score);
-            
-            GameOver gameOver = new GameOver(game, spriteBatch, font);
+
+            SpriteFont regularFont = g.Content.Load<SpriteFont>("fonts/regF");
+            GameOver gameOver = new GameOver(game, spriteBatch, font, regularFont);
             gameOver.Visible = false;
             //Make invisible, when player loses, make visibile
             this.Components.Add(gameOver);
 
-            CollisionManager cm = new CollisionManager(game, bird, bullet, pipe1, pipe2, enemy2, enemy3, score, gameOver, losingSound, pointUpSound);
+              cm = new CollisionManager(game, bird, bullet, pipe1, pipe2, enemy2, enemy3, score, gameOver, losingSound, pointUpSound);
             this.Components.Add(cm);
         }
 
@@ -90,6 +93,7 @@ namespace BirdJYSP
 
         public override void Update(GameTime gameTime)
         {
+            
             base.Update(gameTime);
         }
 

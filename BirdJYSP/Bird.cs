@@ -12,7 +12,7 @@ namespace BirdJYSP
     public class Bird : DrawableGameComponent
     {
         private SpriteBatch spriteBatch;
-        private Texture2D birdTex;
+        public Texture2D birdTex;
 
         private Vector2 birdPos;
         private Vector2 birdGravity;

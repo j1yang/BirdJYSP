@@ -85,42 +85,6 @@ namespace BirdJYSP
 
             startScene.show();
         }
-
-        protected override void Update(GameTime gameTime)
-        {
-            //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            //    Exit();
-            KeyboardState ks = Keyboard.GetState();
-
-            if (helpScene.Enabled)
-            {
-                if (ks.IsKeyDown(Keys.Escape))
-                {
-                    helpScene.hide();
-                    startScene.show();
-                }
-            }
-            if (highScoreScene.Enabled)
-            {
-                if (ks.IsKeyDown(Keys.Escape))
-                {
-                    highScoreScene.hide();
-                    startScene.show();
-                }
-            }
-            if (aboutScene.Enabled)
-            {
-                if (ks.IsKeyDown(Keys.Escape))
-                {
-                    aboutScene.hide();
-                    startScene.show();
-                }
-            }
-            // TODO: Add your update logic here
-
-            base.Update(gameTime);
-        }
-
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.White);
@@ -159,10 +123,53 @@ namespace BirdJYSP
                 }
             }
 
-            
-
             base.Draw(gameTime);
         }
+
+        protected override void Update(GameTime gameTime)
+        {
+            //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            //    Exit();
+            KeyboardState ks = Keyboard.GetState();
+            if (actionScene.Enabled && actionScene.cm.gameOver.Visible == true)
+            {
+                if (ks.IsKeyDown(Keys.Escape))
+                {
+                    actionScene.hide();
+                    startScene.show();
+                    actionScene.cm.ResetGame();
+                }
+            }
+            if (helpScene.Enabled)
+            {
+                if (ks.IsKeyDown(Keys.Escape))
+                {
+                    helpScene.hide();
+                    startScene.show();
+                }
+            }
+            if (highScoreScene.Enabled)
+            {
+                if (ks.IsKeyDown(Keys.Escape))
+                {
+                    highScoreScene.hide();
+                    startScene.show();
+                }
+            }
+            if (aboutScene.Enabled)
+            {
+                if (ks.IsKeyDown(Keys.Escape))
+                {
+                    aboutScene.hide();
+                    startScene.show();
+                }
+            }
+            // TODO: Add your update logic here
+
+            base.Update(gameTime);
+        }
+
+        
 
         private void hideAllScenes()
         {

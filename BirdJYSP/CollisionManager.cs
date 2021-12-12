@@ -2,6 +2,7 @@
 using Microsoft.VisualBasic.FileIO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,9 +23,9 @@ namespace BirdJYSP
         private Enemy enemy1;
         private Enemy enemy2;
         private Score score;
-        private GameOver gameOver;
+        public GameOver gameOver;
         private SoundEffect losingSound, pointUpSound;
-
+        public bool isScoreUpdated = false;
 
         //private SoundEffect hitSound;
         public CollisionManager(Game game,
@@ -47,6 +48,7 @@ namespace BirdJYSP
             this.enemy2 = enemy2;
             this.score = score;
             this.gameOver = gameOver;
+            this.gameOver.Visible = false;
             this.losingSound = losingSound;
             this.pointUpSound = pointUpSound;
 
@@ -70,11 +72,12 @@ namespace BirdJYSP
             enemy2.Visible = false;
             gameOver.Visible = true;
             score.Visible = false;
-            gameOver.Visible = true;
+            //gameOver.Visible = true;
 
             
             if (InputBox("Save Score", "New document name:", ref playerName) == DialogResult.OK)
             {
+                isScoreUpdated = true;
                 finalScore = playerName;
                 finalScore += " - " + score.CurrentScore;
                 if (!File.Exists("SavedScoreList.txt"))
@@ -190,9 +193,55 @@ namespace BirdJYSP
                 score.CurrentScore++;
                 gameOver.CurrentScore++;
             }
+            KeyboardState ks = Keyboard.GetState();
 
+            if (gameOver.Visible)
+            {//if game is over
+                if (ks.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Space) && isScoreUpdated == true)
+                {//space key pushed, play game again
+                    ResetGame();
+
+                }
+            }
 
             base.Update(gameTime);
+        }
+
+        public void ResetGame()
+        {
+            //game over message disable
+            gameOver.Visible = false;
+
+            //reset score
+            score.CurrentScore = 0;
+
+            //enable player bird, enemy bird, bullet, and pipe
+            bird.Enabled = true;
+            bird.Visible = true;
+            bird.BirdPos = new Vector2((Shared.stage.X - bird.birdTex.Width) / 5, (Shared.stage.Y - bird.birdTex.Height) / 2);
+            bullet.Enabled = true;
+            bullet.Visible = true;
+            pipe1.Enabled = true;
+            pipe1.Visible = true;
+            Random rnd = new Random();
+
+            pipe1.position = new Vector2((Shared.stage.X), (Shared.stage.Y) - rnd.Next(100, 380));;
+
+            pipe2.Enabled = true;
+            pipe2.Visible = true;
+            pipe2.position = new Vector2((Shared.stage.X) + 800, rnd.Next(-400, -200));
+
+            enemy1.Enabled = true;
+            enemy1.Visible = true;
+            enemy1.position= new Vector2((Shared.stage.X) + 400, (Shared.stage.Y) - rnd.Next(2, (int)Shared.stage.Y)); ;
+
+            enemy2.Enabled = true;
+            enemy2.Visible = true;
+            enemy2.position = new Vector2((Shared.stage.X) + 1200, (Shared.stage.Y) - rnd.Next(2, (int)Shared.stage.Y)); ;
+
+            score.Visible = true;
+
+            isScoreUpdated = false;
         }
     }
 }

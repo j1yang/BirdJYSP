@@ -12,7 +12,7 @@ namespace BirdJYSP
         //Variables for an enemy
         private SpriteBatch spriteBatch;
         private Texture2D tex;
-        private Vector2 position;
+        public Vector2 position;
         private Vector2 stage;
         private Vector2 pipeSpeed;
 
